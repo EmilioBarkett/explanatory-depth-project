@@ -1,0 +1,1 @@
+hey! so this is the readme for the project. this is simply a placeholder. feel free to add as you please to the repo.
