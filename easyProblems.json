@@ -1,0 +1,152 @@
+[
+    {
+        "category": "Puzzle",
+        "id": "puzzle_0",
+        "question": "You have six horses and want to race them to see which is fastest. What is the best way to do this? 9.2.1"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_1",
+        "question": "Suppose you're on a game show, and you're given the choice of three doors: Behind one door is a gold bar; behind the others, rotten vegetables. You pick a door, say No. 1, and the host asks you \"Do you want to pick door No. 2 instead?\" Is it to your advantage to switch your choice? 9.2.2"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_0",
+        "question": "You are playing Russian roulette with a six-shooter revolver. Your opponent puts in five bullets, spins the chambers and fires at himself, but no bullet comes out. He gives you the choice of whether or not he should spin the chambers again before firing at you. Should he spin again? 9.2.3"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_2",
+        "question": "A farmer wants to cross a river and take with him a wolf, a goat and a cabbage. He has a boat with three secure separate compartments. If the wolf and the goat are alone on one shore, the wolf will eat the goat. If the goat and the cabbage are alone on the shore, the goat will eat the cabbage. How can the farmer efficiently bring the wolf, the goat and the cabbage across the river without anything being eaten? 9.2.4"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_3",
+        "question": "Bob has three boxes in front of him - Box A, Box B and Box C. Bob does not know what is in the boxes. Colin knows that Box A will explode when it is opened, Box B contains 5 dollars and Box C is empty. Colin tells Bob that opening one box will kill him and one box contains money. Should Bob open a box? 9.2.5"
+    },
+    {
+        "category": "Counting",
+        "id": "counting_0",
+        "question": "A robot has 8 arms. There are 5 objects on a table: a knife, a fork, a spoon, a teddy bear and a doll. The robot picks up each object with an arm. He then shakes hands with himself. 9.2.6"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_1",
+        "question": "Alan, Bob, Colin, Dave and Emily are standing in a circle. Alan is on Bob's immediate left. Bob is on Colin's immediate left. Colin is on Dave's immediate left. Dave is on Emily's immediate left. Who is on Alan's immediate right? 9.2.7"
+    },
+    {
+        "category": "Linguistic",
+        "id": "linguistic_0",
+        "question": "Write me a sentence without any words that appear in The Bible. 9.2.8"
+    },
+    {
+        "category": "Popular science",
+        "id": "popular_science_0",
+        "question": "Which weighs more, a pound of water, two pounds of bricks, a pound of feathers, or three pounds of air. 9.2.9"
+    },
+    {
+        "category": "Relational",
+        "id": "relational_0",
+        "question": "I get out on the top floor (third floor) at street level. How many stories is the building above the ground? 9.2.10"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_2",
+        "question": "In a toy box, there's a red ball, a blue truck, and a green dinosaur. The red ball is not next to the blue truck, and the green dinosaur is next to the red ball. Which toy is in the middle?"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_3",
+        "question": "Four children - Alex, Bella, Charlie, and Dana - are sitting around a picnic table. Alex is facing Bella. Charlie is sitting to the right of Bella. Who is sitting to the left of Alex?"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_4",
+        "question": "A man leaves home, makes a left turn and walks straight for a km and reaches 300m elevation, makes another left turn and walks straight for a km and reaches 500m elevation, makes another left turn and walks straight for a km and reaches 900m elevation, and turns left again and walks straight for a km. How far away is he from his starting point and what is his final elevation?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_4",
+        "question": "A group of four people needs to cross a bridge at night. The bridge is very old and rickety. They have only one torch and because it's night, the torch is necessary to cross the bridge. Each person walks at a different speed: - A takes 1 minute to cross, - B takes 2 minutes, - C takes 5 minutes, and - D takes 10 minutes. What is the fastest time they can all get across the bridge?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_5",
+        "question": "You're in a room with two doors that lead out. One door leads to certain death, and the other door leads to freedom. There are two guardians, one by each door. One taller guardian always tells the truth and guards the death door, the other always lies. What is the minimum number of questions needed to ask the guards to get to safety?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_6",
+        "question": "You have 3 switches in front of you - A, B and C. You have 3 light bulbs in front of you in the same room - one red, one blue, one purple. They are LED and do not get warm when turned on. You want to know which switch turns on which light bulb. What is the best way to determine this?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_7",
+        "question": "The Poisoned Wine A king has 1000 sweet bottles of wine, and one contains a very bitter poison. The poison takes effect exactly 24 hours after consumption. The king needs to find the poisoned bottle in 24 hours for an event. He has 10 prisoners to test the wine. What is the easiest way for him to identify the poisoned bottle?"
+    },
+    {
+        "category": "Linguistic",
+        "id": "linguistic_1",
+        "question": "Write a grammatically correct sentence without reusing any letter more than once."
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_5",
+        "question": "An arrow points up. We rotate it 90 degrees to the left, mirror it along its flat end, and rotate it another 90 degrees to the left. Which direction is it pointing?"
+    },
+    {
+        "category": "Linguistic",
+        "id": "linguistic_2",
+        "question": "Write a sentence where every word starts with the letter A."
+    },
+    {
+        "category": "Relational",
+        "id": "relational_1",
+        "question": "Sally (a girl) has 3 brothers. Each brother has 2 sisters. How many sisters does Sally have?"
+    },
+    {
+        "category": "Spatial",
+        "id": "spatial_6",
+        "question": "I'm in London and facing west, is Edinburgh to my left or my right?"
+    },
+    {
+        "category": "Counting",
+        "id": "counting_1",
+        "question": "Count the number of occurrences of the letter 'L' in the word 'LOLLAPALOOZA'."
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_8",
+        "question": "How many pairs of twins do you need in a room for there to be at least a 50% chance that two people have the same birthday?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_9",
+        "question": "A partially full hotel has an infinite number of fully furnished rooms. How does it accommodate one more guest?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_10",
+        "question": "A runaway trolley is heading down the tracks away from five people upwards of the track. You are near a lever that can switch the trolley to another track? Does it impact people's lives if you pull the lever?"
+    },
+    {
+        "category": "Puzzle",
+        "id": "puzzle_11",
+        "question": "How do you measure exactly 4 gallons of water with only a 3-gallon, 5-gallon, and 4-gallon jug?"
+    },
+    {
+        "category": "Popular science",
+        "id": "puzzle_12",
+        "question": "A 2kg tree grows in a planted pot with 10kg of soil. When the tree grows to 3kg, how much soil is left?"
+    },
+    {
+        "category": "Relational",
+        "id": "relational_2",
+        "question": "A man steps over a 0.5m hurdle. What is the minimum height he could have jumped?"
+    },
+    {
+        "category": "Popular science",
+        "id": "popular_science_1",
+        "question": "I walk to my friend's house, averaging 3mph. How fast would I have to run back to double my average speed for the entire trip?"
+    }
+]
