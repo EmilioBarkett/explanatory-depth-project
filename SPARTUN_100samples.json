@@ -1,0 +1,2008 @@
+[
+  {
+    "study": "spartun",
+    "description": "100 sample questions extracted from the attached SpaRTUN text dump. Preserved original fields available in the file: story, question, qtype, answer, and candidateanswers.",
+    "items": [
+      {
+        "id": "spartun_001",
+        "question": "Is a medium yellow apple to the south of a fruit?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_002",
+        "question": "Is a medium yellow fruit in box two?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_003",
+        "question": "Are all medium yellow apples in all boxes?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_004",
+        "question": "Are all medium fruits to the north of all medium orange apples?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_005",
+        "question": "Where is the medium yellow apple in box two regarding medium orange apple number two?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_006",
+        "question": "What is the position of the medium yellow apple covered by box one relative to box two?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_007",
+        "question": "Where is the medium yellow apple in box two regarding medium orange apple number one?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one covers a medium yellow apple. In box two there is this box. Box two has a medium orange apple which is to the south of a medium yellow apple and touches another medium orange apple. Box two has the medium yellow apple. Medium orange apple number two is covered by this box. South of medium orange apple number one there is medium orange apple number two.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_008",
+        "question": "Are all tiny shapes disconnected from the tiny white dimond?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_009",
+        "question": "Do all boxes have all white rectangles?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_010",
+        "question": "Are all boxes disconnected from all things?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_011",
+        "question": "Where is the tiny white oval relative to the tiny white dimond?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE",
+          "FRONT",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_012",
+        "question": "What is the position of box JJJ regarding the large white rectangle?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "FR",
+        "answer": [
+          "NTPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_013",
+        "question": "What is the position of EEE relative to the large white rectangle?",
+        "category": "spartun",
+        "story": "We have three boxes, named DDD, EEE and JJJ. A tiny white oval is covered by and a large white rectangle is in box DDD. Behind and disconnected from box DDD there is box EEE with a large green oval and a midsize white dimond. Above this box is box DDD. Close to the large green oval is a tiny white dimond. The tiny white dimond is inside and touching box EEE. Box EEE covers a midsize green dimond. Over the midsize white dimond there is the midsize green dimond. Box DDD is within box JJJ. A midsize green dimond is inside box JJJ.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW",
+          "BEHIND",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_014",
+        "question": "Is the medium blue square over any medium square?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_015",
+        "question": "Do all blocks cover all squares?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_016",
+        "question": "Is a medium yellow object within all blocks?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_017",
+        "question": "Do all objects touch the blue thing?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_018",
+        "question": "What is the position of the blue shape regarding the black shape?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_019",
+        "question": "Where is block relative to the medium black square?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "FR",
+        "answer": [
+          "TPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_020",
+        "question": "What is the position of the yellow shape regarding block?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_021",
+        "question": "Where is the yellow object relative to the blue thing?",
+        "category": "spartun",
+        "story": "A block named AAA has a medium yellow object. A medium black square is inside and touching and a medium blue square is inside this block. The yellow object is under the medium blue square. Above and touches the black thing there is this shape. The blue thing touches this object.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW",
+          "EC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_022",
+        "question": "Does midsize green rectangle number two cover a box?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_023",
+        "question": "Is any green shape under any midsize rectangle?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_024",
+        "question": "Are all midsize green rectangles under any midsize white rectangle?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_025",
+        "question": "Are all things covered by any box?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_026",
+        "question": "Where is midsize green rectangle number two regarding box DDD?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_027",
+        "question": "What is the position of midsize green rectangle number two regarding midsize green rectangle number three?",
+        "category": "spartun",
+        "story": "A box called DDD have a midsize white rectangle and a midsize green rectangle. Over the midsize green rectangle there is the midsize white rectangle. Box DDD covers another midsize white rectangle. A box named EEE exists in the image. Within this box is another box called JJJ with a midsize green rectangle and a midsize white rectangle. Above another midsize green rectangle there is the midsize green rectangle. Midsize green rectangle number two is covered by box JJJ. Another midsize green rectangle is inside box JJJ. The midsize white rectangle is over midsize green rectangle number one and is under this thing. Below midsize green rectangle number three is the object which was over midsize green rectangle number two.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_028",
+        "question": "Is a large green rectangle behind EEE?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_029",
+        "question": "Is any tiny shape north of the midsize green rectangle?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_030",
+        "question": "Is any thing to the south of all objects?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_031",
+        "question": "Do all boxes contain all tiny shapes?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_032",
+        "question": "Where is the large green rectangle regarding box EEE?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE",
+          "BEHIND",
+          "FAR",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_033",
+        "question": "What is the position of the tiny orange shape relative to the midsize shape?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_034",
+        "question": "Where is the tiny white rectangle relative to the midsize thing?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_035",
+        "question": "Where is EEE relative to the orange shape?",
+        "category": "spartun",
+        "story": "A large green rectangle is covered by a box called DDD. Behind, disconnected from and away from another box named EEE there is box DDD. Box EEE with a midsize green rectangle is to the south of this box. South of a tiny orange shape there is the midsize object. The orange shape is within box EEE. To the north of a tiny white rectangle there is the midsize thing. The tiny white rectangle is within box EEE.",
+        "qtype": "FR",
+        "answer": [
+          "NTPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_036",
+        "question": "Is any medium purple hexagon inside any block?",
+        "category": "spartun",
+        "story": "A medium red hexagon is covered by a block called HHH. Block HHH has a medium grey hexagon. To the north of the medium red hexagon is the medium grey hexagon. Block HHH has another block named LLL. A medium red hexagon touches a medium grey hexagon. The medium red hexagon is inside block LLL. Block LLL covers the medium grey hexagon. This block contains a medium purple hexagon.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_037",
+        "question": "Are all medium red hexagons to the south of any object?",
+        "category": "spartun",
+        "story": "A medium red hexagon is covered by a block called HHH. Block HHH has a medium grey hexagon. To the north of the medium red hexagon is the medium grey hexagon. Block HHH has another block named LLL. A medium red hexagon touches a medium grey hexagon. The medium red hexagon is inside block LLL. Block LLL covers the medium grey hexagon. This block contains a medium purple hexagon.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_038",
+        "question": "Does HHH cover all things?",
+        "category": "spartun",
+        "story": "A medium red hexagon is covered by a block called HHH. Block HHH has a medium grey hexagon. To the north of the medium red hexagon is the medium grey hexagon. Block HHH has another block named LLL. A medium red hexagon touches a medium grey hexagon. The medium red hexagon is inside block LLL. Block LLL covers the medium grey hexagon. This block contains a medium purple hexagon.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_039",
+        "question": "Where is the medium purple hexagon relative to block HHH?",
+        "category": "spartun",
+        "story": "A medium red hexagon is covered by a block called HHH. Block HHH has a medium grey hexagon. To the north of the medium red hexagon is the medium grey hexagon. Block HHH has another block named LLL. A medium red hexagon touches a medium grey hexagon. The medium red hexagon is inside block LLL. Block LLL covers the medium grey hexagon. This block contains a medium purple hexagon.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_040",
+        "question": "Where is the medium red hexagon covered by HHH regarding the medium grey hexagon in HHH?",
+        "category": "spartun",
+        "story": "A medium red hexagon is covered by a block called HHH. Block HHH has a medium grey hexagon. To the north of the medium red hexagon is the medium grey hexagon. Block HHH has another block named LLL. A medium red hexagon touches a medium grey hexagon. The medium red hexagon is inside block LLL. Block LLL covers the medium grey hexagon. This block contains a medium purple hexagon.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_041",
+        "question": "Are all medium objects to the east of the circle?",
+        "category": "spartun",
+        "story": "There is one block called AAA. This block cover a medium yellow shape and a big blue triangle. A black circle and a big black square are west of the medium yellow shape.South of the medium yellow shape is a big blue square. The big blue square is inside and touching block AAA. The big black square and the yellow object are to the north of a medium black square.The big blue triangle is near to the medium black square. The medium black square is inside and touching block AAA. To the north of the big blue triangle is the medium yellow shape. The big black square is within block AAA. Block AAA contains the circle.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_042",
+        "question": "What is the position of the medium yellow shape regarding the black circle?",
+        "category": "spartun",
+        "story": "There is one block called AAA. This block cover a medium yellow shape and a big blue triangle. A black circle and a big black square are west of the medium yellow shape.South of the medium yellow shape is a big blue square. The big blue square is inside and touching block AAA. The big black square and the yellow object are to the north of a medium black square.The big blue triangle is near to the medium black square. The medium black square is inside and touching block AAA. To the north of the big blue triangle is the medium yellow shape. The big black square is within block AAA. Block AAA contains the circle.",
+        "qtype": "FR",
+        "answer": [
+          "RIGHT"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_043",
+        "question": "Is a medium grey hexagon over any purple hexagon?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_044",
+        "question": "Does medium purple hexagon number one touch medium purple hexagon number two?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_045",
+        "question": "Is a medium grey hexagon under a medium purple hexagon?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_046",
+        "question": "Is any medium grey hexagon inside and touching block?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_047",
+        "question": "Where is the grey shape regarding medium purple hexagon number one?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_048",
+        "question": "Where is the grey shape regarding HHH?",
+        "category": "spartun",
+        "story": "A block called HHH have two medium purple hexagons and a medium red object. This block covers a medium grey hexagon. Over the grey thing is medium purple hexagon number one. Medium purple hexagon number two is below the red object. Above and touches medium purple hexagon number one there is this thing. The medium grey hexagon is below the red thing.",
+        "qtype": "FR",
+        "answer": [
+          "TPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_049",
+        "question": "Are all orange dimonds south of a large orange rectangle?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_050",
+        "question": "Is a midsize green object farther from a large orange rectangle?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_051",
+        "question": "Is DDD south of the oval?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_052",
+        "question": "Is an orange dimond in front of a shape?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_053",
+        "question": "Where is the tiny orange dimond relative to the large orange rectangle in DDD?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_054",
+        "question": "Where is the midsize green dimond regarding the large orange rectangle covered by EEE?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW",
+          "FRONT",
+          "FAR"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_055",
+        "question": "What is the position of DDD regarding the oval?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW",
+          "FRONT",
+          "FAR"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_056",
+        "question": "Where is the tiny orange dimond relative to the tiny white dimond?",
+        "category": "spartun",
+        "story": "There are two boxes, called DDD and EEE. To the south of box EEE is box DDD with a large orange rectangle. Behind and far from this box is box EEE. A midsize green dimond and a tiny orange dimond are inside box DDD. North of the tiny orange dimond there is the large orange rectangle. Box EEE contains a midsize white oval. A large orange rectangle is inside and touching and a tiny white dimond is in this box.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW",
+          "FRONT",
+          "FAR"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_057",
+        "question": "Is a medium apple disconnected from all medium things?",
+        "category": "spartun",
+        "story": "A medium orange apple is inside and touching a box named one. A box called two exists. A medium yellow apple is inside box two. Box two covers another medium yellow apple. Medium yellow apple number one touches medium yellow apple number two. West of and near to box two is another box called three with a medium yellow apple and a medium orange apple. Box two is south of and disconnected from this box. A medium green apple is covered by box three.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_058",
+        "question": "Are all medium yellow apples disconnected from any box?",
+        "category": "spartun",
+        "story": "A medium orange apple is inside and touching a box named one. A box called two exists. A medium yellow apple is inside box two. Box two covers another medium yellow apple. Medium yellow apple number one touches medium yellow apple number two. West of and near to box two is another box called three with a medium yellow apple and a medium orange apple. Box two is south of and disconnected from this box. A medium green apple is covered by box three.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_059",
+        "question": "Does medium yellow apple number two touch any fruit?",
+        "category": "spartun",
+        "story": "A medium orange apple is inside and touching a box named one. A box called two exists. A medium yellow apple is inside box two. Box two covers another medium yellow apple. Medium yellow apple number one touches medium yellow apple number two. West of and near to box two is another box called three with a medium yellow apple and a medium orange apple. Box two is south of and disconnected from this box. A medium green apple is covered by box three.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_060",
+        "question": "What is the position of the medium yellow apple in box three relative to box two?",
+        "category": "spartun",
+        "story": "A medium orange apple is inside and touching a box named one. A box called two exists. A medium yellow apple is inside box two. Box two covers another medium yellow apple. Medium yellow apple number one touches medium yellow apple number two. West of and near to box two is another box called three with a medium yellow apple and a medium orange apple. Box two is south of and disconnected from this box. A medium green apple is covered by box three.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT",
+          "ABOVE",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_061",
+        "question": "Does the yellow thing cover the medium blue square?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_062",
+        "question": "Is the yellow square in any block?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_063",
+        "question": "Do all blocks cover all medium shapes?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_064",
+        "question": "Where is the yellow object relative to the medium blue square?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "FR",
+        "answer": [
+          "EC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_065",
+        "question": "Where is the yellow object relative to block?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_066",
+        "question": "What is the position of block regarding the blue thing?",
+        "category": "spartun",
+        "story": "There exists one block named AAA. This block contains a yellow square. A medium blue square touches the yellow thing. The medium blue square is inside and touching block AAA.",
+        "qtype": "FR",
+        "answer": [
+          "TPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_067",
+        "question": "Are all small orange watermelons west of box one?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_068",
+        "question": "Are all orange watermelons south of the medium green melon?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_069",
+        "question": "Is the big orange apple north of all boxes?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_070",
+        "question": "What is the position of small orange watermelon number two regarding box one?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT",
+          "ABOVE",
+          "FAR",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_071",
+        "question": "Where is small orange watermelon number one relative to the medium green melon?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_072",
+        "question": "What is the position of the big orange apple relative to box one?",
+        "category": "spartun",
+        "story": "There is a box called one. A box named two exists in the image. Box two covers a big orange apple. Another box called three with a small orange watermelon and a medium green melon has this box. To the north of, disconnected from, far from and to the west of box one there is this box. Another small orange watermelon is in this box. South of this fruit there is small orange watermelon number one. To the south of the medium green melon is small orange watermelon number two.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT",
+          "ABOVE",
+          "FAR",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_073",
+        "question": "Are all fruits west of a medium orange watermelon?",
+        "category": "spartun",
+        "story": "A box named one contain a medium orange watermelon, a big orange melon and a medium green melon. A medium yellow apple and a big green apple are covered by this box. To the east of the big green apple is the medium orange watermelon. A medium orange melon is inside box one. To the north of the medium yellow apple there is the big orange melon. The medium green melon is near to the fruit which was east of the big green apple. To the south of the big orange melon is the big green apple. The medium orange melon is west of the big orange melon. A box named two exists. A medium orange watermelon is covered by and a big green apple is in box two. To the west of the big green apple there is the medium orange watermelon.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_074",
+        "question": "Does box two cover all medium orange watermelons?",
+        "category": "spartun",
+        "story": "A box named one contain a medium orange watermelon, a big orange melon and a medium green melon. A medium yellow apple and a big green apple are covered by this box. To the east of the big green apple is the medium orange watermelon. A medium orange melon is inside box one. To the north of the medium yellow apple there is the big orange melon. The medium green melon is near to the fruit which was east of the big green apple. To the south of the big orange melon is the big green apple. The medium orange melon is west of the big orange melon. A box named two exists. A medium orange watermelon is covered by and a big green apple is in box two. To the west of the big green apple there is the medium orange watermelon.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_075",
+        "question": "What is the position of the big green apple covered by box one regarding the medium orange watermelon in box one?",
+        "category": "spartun",
+        "story": "A box named one contain a medium orange watermelon, a big orange melon and a medium green melon. A medium yellow apple and a big green apple are covered by this box. To the east of the big green apple is the medium orange watermelon. A medium orange melon is inside box one. To the north of the medium yellow apple there is the big orange melon. The medium green melon is near to the fruit which was east of the big green apple. To the south of the big orange melon is the big green apple. The medium orange melon is west of the big orange melon. A box named two exists. A medium orange watermelon is covered by and a big green apple is in box two. To the west of the big green apple there is the medium orange watermelon.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_076",
+        "question": "Does a block cover a medium red hexagon?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_077",
+        "question": "Are all blocks west of any medium hexagon?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_078",
+        "question": "Are all objects east of any block?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_079",
+        "question": "Is medium grey hexagon number two south of medium grey hexagon number one?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_080",
+        "question": "Where is LLL relative to medium grey hexagon number one?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT",
+          "FAR"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_081",
+        "question": "Where is the medium purple hexagon in LLL relative to block HHH?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "FR",
+        "answer": [
+          "LEFT",
+          "FAR"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_082",
+        "question": "Where is medium grey hexagon number two regarding medium grey hexagon number one?",
+        "category": "spartun",
+        "story": "A block called HHH contain a medium grey hexagon and a medium red hexagon. North of another medium grey hexagon there is the medium grey hexagon. Block HHH covers medium grey hexagon number two. A medium purple hexagon is in this block. To the north of medium grey hexagon number two there is the medium red hexagon. The medium purple hexagon touches medium grey hexagon number one. Another block called LLL is away from and to the west of block HHH. A medium red hexagon is inside and touching and a medium purple hexagon is within this block.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_083",
+        "question": "Is block BBB over all medium blue squares?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_084",
+        "question": "Is any medium black square farther from all medium blue squares?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_085",
+        "question": "Is any medium black square inside block AAA?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_086",
+        "question": "Does a medium blue square touch all medium yellow squares?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_087",
+        "question": "Where is BBB relative to the medium blue square in CCC?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE",
+          "FAR",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_088",
+        "question": "What is the position of the medium black square in BBB relative to the medium blue square in CCC?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "FR",
+        "answer": [
+          "ABOVE",
+          "FAR",
+          "DC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_089",
+        "question": "Where is the medium black square in CCC regarding AAA?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_090",
+        "question": "What is the position of the medium blue square in block AAA regarding the medium yellow square?",
+        "category": "spartun",
+        "story": "A block called AAA contain a medium yellow square and a medium blue square. The medium yellow square touches the medium blue square. Above block AAA there is another block named BBB with a medium black square. Block AAA is disconnected from and away from this block. In this block there is another block called CCC with a medium blue square and a medium black square.",
+        "qtype": "FR",
+        "answer": [
+          "EC"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_091",
+        "question": "Does a box cover the orange object?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_092",
+        "question": "Does a box contain all midsize green rectangles?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_093",
+        "question": "Is the orange thing below the midsize green rectangle?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_094",
+        "question": "What is the position of DDD relative to the orange thing?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "FR",
+        "answer": [
+          "TPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_095",
+        "question": "What is the position of box DDD regarding the green thing?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "FR",
+        "answer": [
+          "NTPPI"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_096",
+        "question": "What is the position of the orange thing regarding the green object?",
+        "category": "spartun",
+        "story": "There exists one box named DDD. A midsize orange rectangle is inside and touching and a midsize green rectangle is inside box DDD. Over the orange object there is the midsize green rectangle.",
+        "qtype": "FR",
+        "answer": [
+          "BELOW"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_097",
+        "question": "Are all shapes within a block?",
+        "category": "spartun",
+        "story": "A block called HHH contain two medium red hexagons. This block covers a medium purple hexagon which is south of medium red hexagon number one. A block named LLL exists. Block LLL contains a medium purple hexagon which touches a medium red hexagon. Block LLL covers the medium red hexagon. Another block called KKK has block HHH. To the north of a medium purple hexagon is a medium grey hexagon. The grey shape is in block KKK. The medium purple hexagon is covered by block KKK.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_098",
+        "question": "Is a medium purple hexagon in LLL?",
+        "category": "spartun",
+        "story": "A block called HHH contain two medium red hexagons. This block covers a medium purple hexagon which is south of medium red hexagon number one. A block named LLL exists. Block LLL contains a medium purple hexagon which touches a medium red hexagon. Block LLL covers the medium red hexagon. Another block called KKK has block HHH. To the north of a medium purple hexagon is a medium grey hexagon. The grey shape is in block KKK. The medium purple hexagon is covered by block KKK.",
+        "qtype": "YN",
+        "answer": [
+          "Yes"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      },
+      {
+        "id": "spartun_099",
+        "question": "Where is medium red hexagon number one relative to block KKK?",
+        "category": "spartun",
+        "story": "A block called HHH contain two medium red hexagons. This block covers a medium purple hexagon which is south of medium red hexagon number one. A block named LLL exists. Block LLL contains a medium purple hexagon which touches a medium red hexagon. Block LLL covers the medium red hexagon. Another block called KKK has block HHH. To the north of a medium purple hexagon is a medium grey hexagon. The grey shape is in block KKK. The medium purple hexagon is covered by block KKK.",
+        "qtype": "FR",
+        "answer": [
+          "NTPP"
+        ],
+        "candidateanswers": [
+          "left",
+          "right",
+          "above",
+          "below",
+          "behind",
+          "front",
+          "near",
+          "far",
+          "dc",
+          "ec",
+          "po",
+          "tpp",
+          "ntpp",
+          "tppi",
+          "ntppi"
+        ]
+      },
+      {
+        "id": "spartun_100",
+        "question": "Does box two cover all medium orange apples?",
+        "category": "spartun",
+        "story": "Two boxes, named one and two exist in the image. Box one contains a medium yellow apple and covers a medium orange apple. To the south of the medium yellow apple is the medium orange apple. A medium orange apple is in box two. Box two have a medium yellow apple and a green apple. This box covers another medium orange apple which are to the south of medium orange apple number one and the green fruit. Medium orange apple number one is to the south of the medium yellow apple. South of the green thing there is the medium yellow apple. The fruit which was south of the medium yellow apple touches medium orange apple number two.",
+        "qtype": "YN",
+        "answer": [
+          "No"
+        ],
+        "candidateanswers": [
+          "Yes",
+          "No"
+        ]
+      }
+    ]
+  }
+]
