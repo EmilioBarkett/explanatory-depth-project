@@ -15,6 +15,7 @@ import re
 import time
 import requests
 from dotenv import load_dotenv
+from evals.core.text_analysis import score_explanation
 
 load_dotenv()
 
@@ -160,11 +161,12 @@ def run_three_turns(
         error
     """
     result = {
-        "first_answer":  None,
-        "first_rating":  None,
-        "explanation":   None,
-        "second_rating": None,
-        "error":         None,
+        "first_answer":      None,
+        "first_rating":      None,
+        "explanation":       None,
+        "explanation_scores": None,
+        "second_rating":     None,
+        "error":             None,
     }
 
     try:
@@ -180,8 +182,12 @@ def run_three_turns(
         conversation.append({"role": "assistant", "content": first_reply})
         conversation.append({"role": "user",      "content": TURN2_PROMPT})
         explanation = call_openrouter(conversation, model)
-        result["explanation"] = explanation
-        print(f"    T2 explanation: {len(explanation.split())} words")
+        result["explanation"]        = explanation
+        result["explanation_scores"] = score_explanation(explanation)
+        print(f"    T2 explanation: {len(explanation.split())} words  "
+              f"[unc={result['explanation_scores']['uncertainty']:.2f} "
+              f"con={result['explanation_scores']['confidence']:.2f} "
+              f"net={result['explanation_scores']['net_epistemic']:+.2f}]")
         time.sleep(RATE_LIMIT_DELAY)
 
         # Turn 3: fresh confidence re-rating
