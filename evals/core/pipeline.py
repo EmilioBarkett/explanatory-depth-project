@@ -135,6 +135,17 @@ def extract_rating(text: str) -> int | None:
 
 # ── Three-turn runner ──────────────────────────────────────────────────────────
 
+def format_eta(start_time: float, completed: int, total: int) -> str:
+    """Return a human-readable ETA string based on elapsed time so far."""
+    if completed == 0:
+        return "ETA: estimating..."
+    elapsed  = time.time() - start_time
+    avg      = elapsed / completed
+    remaining = avg * (total - completed)
+    mins, secs = divmod(int(remaining), 60)
+    return f"ETA: ~{mins}m{secs:02d}s remaining  (avg {avg:.1f}s/question)"
+
+
 def run_three_turns(
     turn1_prompt: str,
     model: str,
@@ -162,6 +173,7 @@ def run_three_turns(
         first_reply  = call_openrouter(conversation, model)
         result["first_answer"] = first_reply
         result["first_rating"] = extract_rating(first_reply)
+        print(f"    T1 answer: {first_reply[:80].strip()!r}  R1={result['first_rating']}")
         time.sleep(RATE_LIMIT_DELAY)
 
         # Turn 2: explanation only (no re-evaluation prompt)
@@ -169,6 +181,7 @@ def run_three_turns(
         conversation.append({"role": "user",      "content": TURN2_PROMPT})
         explanation = call_openrouter(conversation, model)
         result["explanation"] = explanation
+        print(f"    T2 explanation: {len(explanation.split())} words")
         time.sleep(RATE_LIMIT_DELAY)
 
         # Turn 3: fresh confidence re-rating
@@ -177,7 +190,16 @@ def run_three_turns(
         third_reply = call_openrouter(conversation, model)
         result["second_rating"] = extract_rating(third_reply)
 
+        delta = (
+            result["second_rating"] - result["first_rating"]
+            if result["first_rating"] is not None and result["second_rating"] is not None
+            else None
+        )
+        delta_str = f"{delta:+d}" if delta is not None else "n/a"
+        print(f"    R1={result['first_rating']}  →  R2={result['second_rating']}  Δ={delta_str}")
+
     except (ModelNotFoundError, ModelRateLimitError, RuntimeError) as exc:
         result["error"] = str(exc)
+        print(f"    ERROR: {exc}")
 
     return result

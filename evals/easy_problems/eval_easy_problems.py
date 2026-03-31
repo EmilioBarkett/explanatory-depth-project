@@ -15,7 +15,7 @@ from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
-from evals.core.pipeline import MODELS, build_turn1_prompt, run_three_turns, RATE_LIMIT_DELAY
+from evals.core.pipeline import MODELS, build_turn1_prompt, run_three_turns, RATE_LIMIT_DELAY, format_eta
 
 DATA_FILE   = Path(__file__).resolve().parents[2] / "data" / "easyProblems.json"
 OUTPUT_FILE = Path(__file__).resolve().parents[2] / "results" / f"easy_problems_{datetime.now():%Y%m%d_%H%M%S}.json"
@@ -26,21 +26,31 @@ def load_questions(path: Path) -> list[dict]:
         return json.load(f)
 
 
-def main():
-    questions = load_questions(DATA_FILE)
-    print(f"Loaded {len(questions)} questions.")
+def save(results: list[dict]) -> None:
+    OUTPUT_FILE.parent.mkdir(exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
 
-    results = []
+
+def main():
+    questions  = load_questions(DATA_FILE)
+    total      = len(questions) * len(MODELS)
+    print(f"Loaded {len(questions)} questions × {len(MODELS)} models = {total} entries.")
+    print(f"Output → {OUTPUT_FILE}\n")
+
+    results    = []
+    completed  = 0
+    start_time = time.time()
 
     for model in MODELS:
         print(f"\n=== model={model!r} ===")
         skip_model = False
 
-        for i, q in enumerate(questions, 1):
+        for q in questions:
             if skip_model:
                 break
 
-            print(f"  [{i}/{len(questions)}] id={q['id']!r}")
+            print(f"  [{completed+1}/{total}] id={q['id']!r}  {format_eta(start_time, completed, total)}")
 
             entry = {
                 "question_id": q["id"],
@@ -51,6 +61,9 @@ def main():
 
             outcome = run_three_turns(build_turn1_prompt(q["question"]), model)
             entry.update(outcome)
+            results.append(entry)
+            completed += 1
+            save(results)
 
             if outcome["error"] and any(
                 kw in outcome["error"] for kw in ("unavailable", "Rate limited")
@@ -58,14 +71,9 @@ def main():
                 print(f"    SKIP MODEL: {outcome['error']}")
                 skip_model = True
 
-            results.append(entry)
             time.sleep(RATE_LIMIT_DELAY)
 
-    OUTPUT_FILE.parent.mkdir(exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
-
-    print(f"\nSaved {len(results)} entries → {OUTPUT_FILE}")
+    print(f"\nDone. {len(results)} entries saved → {OUTPUT_FILE}")
     _print_summary(results)
 
 

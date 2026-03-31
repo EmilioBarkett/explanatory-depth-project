@@ -24,7 +24,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from evals.core.pipeline import (
     MODELS, run_three_turns, extract_rating,
-    RATE_LIMIT_DELAY, call_openrouter,
+    RATE_LIMIT_DELAY, call_openrouter, format_eta,
 )
 
 DATA_FILE   = Path(__file__).resolve().parents[2] / "data" / "spartun_100_samples.json"
@@ -67,43 +67,53 @@ def load_questions(path: Path) -> list[dict]:
     return data[0]["items"]
 
 
-def main():
-    questions = load_questions(DATA_FILE)
-    print(f"Loaded {len(questions)} SPARTUN questions.")
+def save(results: list[dict]) -> None:
+    OUTPUT_FILE.parent.mkdir(exist_ok=True)
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
+        json.dump(results, f, indent=2, ensure_ascii=False)
 
-    results = []
+
+def main():
+    questions  = load_questions(DATA_FILE)
+    total      = len(questions) * len(MODELS)
+    print(f"Loaded {len(questions)} SPARTUN questions × {len(MODELS)} models = {total} entries.")
+    print(f"Output → {OUTPUT_FILE}\n")
+
+    results    = []
+    completed  = 0
+    start_time = time.time()
 
     for model in MODELS:
         print(f"\n=== model={model!r} ===")
         skip_model = False
 
-        for i, q in enumerate(questions, 1):
+        for q in questions:
             if skip_model:
                 break
 
-            print(f"  [{i}/{len(questions)}] id={q['id']!r} qtype={q['qtype']!r}")
+            candidates   = q["candidateanswers"]
+            correct      = q["answer"]
+            turn1_prompt = build_turn1_prompt(q["story"], q["question"], candidates)
 
-            candidates     = q["candidateanswers"]
-            correct        = q["answer"]
-            turn1_prompt   = build_turn1_prompt(q["story"], q["question"], candidates)
+            print(f"  [{completed+1}/{total}] id={q['id']!r} qtype={q['qtype']!r}  {format_eta(start_time, completed, total)}")
 
             entry = {
-                "question_id":      q["id"],
-                "question":         q["question"],
-                "story":            q["story"],
-                "qtype":            q["qtype"],
-                "correct_answer":   correct,
+                "question_id":       q["id"],
+                "question":          q["question"],
+                "story":             q["story"],
+                "qtype":             q["qtype"],
+                "correct_answer":    correct,
                 "candidate_answers": candidates,
-                "model":            model,
-                "first_answer":     None,
-                "first_selected":   None,
-                "first_correct":    None,
-                "first_rating":     None,
-                "explanation":      None,
-                "second_selected":  None,
-                "second_correct":   None,
-                "second_rating":    None,
-                "error":            None,
+                "model":             model,
+                "first_answer":      None,
+                "first_selected":    None,
+                "first_correct":     None,
+                "first_rating":      None,
+                "explanation":       None,
+                "second_selected":   None,
+                "second_correct":    None,
+                "second_rating":     None,
+                "error":             None,
             }
 
             outcome = run_three_turns(turn1_prompt, model)
@@ -117,13 +127,17 @@ def main():
             if outcome["first_answer"]:
                 sel = extract_selection(outcome["first_answer"], candidates)
                 entry["first_selected"] = sel
-                entry["first_correct"]  = is_correct(sel, correct)  # fixed
+                entry["first_correct"]  = is_correct(sel, correct)
+                print(f"    correct={correct}  selected={sel}  graded={entry['first_correct']}")
 
-            # Extract second selection from explanation text if present
             if outcome["explanation"]:
                 sel2 = extract_selection(outcome["explanation"], candidates)
                 entry["second_selected"] = sel2
                 entry["second_correct"]  = is_correct(sel2, correct)
+
+            results.append(entry)
+            completed += 1
+            save(results)
 
             if outcome["error"] and any(
                 kw in outcome["error"] for kw in ("unavailable", "Rate limited")
@@ -131,14 +145,9 @@ def main():
                 print(f"    SKIP MODEL: {outcome['error']}")
                 skip_model = True
 
-            results.append(entry)
             time.sleep(RATE_LIMIT_DELAY)
 
-    OUTPUT_FILE.parent.mkdir(exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
-
-    print(f"\nSaved {len(results)} entries → {OUTPUT_FILE}")
+    print(f"\nDone. {len(results)} entries saved → {OUTPUT_FILE}")
     _print_summary(results)
 
 
