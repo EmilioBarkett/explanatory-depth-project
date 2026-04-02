@@ -21,16 +21,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from evals.core.pipeline import MODELS, build_turn1_prompt, run_three_turns, RATE_LIMIT_DELAY, format_eta
 
 DATA_FILE   = Path(__file__).resolve().parents[2] / "data" / "hle_test.jsonl"
-OUTPUT_FILE = Path(__file__).resolve().parents[2] / "results" / f"hle_{datetime.now():%Y%m%d_%H%M%S}.json"
+OUTPUT_DIR  = Path(__file__).resolve().parents[2] / "results" / "full_run_HLE"
+OUTPUT_FILE = OUTPUT_DIR / f"hle_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
 
 # HLE has 2500 questions — cap for tractable runs. Adjust as needed.
-MAX_QUESTIONS = 50
+# BEGIN_IDX is 1-based and inclusive: BEGIN_IDX=51, MAX_QUESTIONS=50 loads questions 51-100.
+BEGIN_IDX = 1
+MAX_QUESTIONS = 5
 
 
-def load_questions(path: Path, limit: int) -> list[dict]:
+def load_questions(path: Path, begin_idx: int, limit: int) -> list[dict]:
     questions = []
     with open(path, encoding="utf-8") as f:
-        for line in f:
+        for idx, line in enumerate(f, start=1):
+            if idx < begin_idx:
+                continue
             line = line.strip()
             if not line:
                 continue
@@ -40,21 +45,48 @@ def load_questions(path: Path, limit: int) -> list[dict]:
     return questions
 
 
-def save(results: list[dict]) -> None:
-    OUTPUT_FILE.parent.mkdir(exist_ok=True)
-    with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
-        json.dump(results, f, indent=2, ensure_ascii=False)
+def load_saved_results(path: Path) -> list[dict]:
+    if not path.exists():
+        return []
+
+    results = []
+    with open(path, encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            results.append(json.loads(line))
+    return results
+
+
+def save(entry: dict) -> None:
+    OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+    with open(OUTPUT_FILE, "a", encoding="utf-8") as f:
+        f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
 
 def main():
-    questions  = load_questions(DATA_FILE, MAX_QUESTIONS)
+    questions  = load_questions(DATA_FILE, BEGIN_IDX, MAX_QUESTIONS)
     total      = len(questions) * len(MODELS)
-    print(f"Loaded {len(questions)} HLE questions (capped at {MAX_QUESTIONS}) × {len(MODELS)} models = {total} entries.")
+    end_idx    = BEGIN_IDX + len(questions) - 1
+    if questions:
+        print(
+            f"Loaded HLE questions {BEGIN_IDX}-{end_idx} "
+            f"(capped at {MAX_QUESTIONS}) × {len(MODELS)} models = {total} entries."
+        )
+    else:
+        print(
+            f"Loaded 0 HLE questions starting at {BEGIN_IDX} "
+            f"(capped at {MAX_QUESTIONS}) × {len(MODELS)} models = {total} entries."
+        )
     print(f"Output → {OUTPUT_FILE}\n")
 
-    results    = []
+    results    = load_saved_results(OUTPUT_FILE)
     completed  = 0
     start_time = time.time()
+
+    if results:
+        print(f"Loaded {len(results)} existing results from {OUTPUT_FILE}")
 
     for model in MODELS:
         print(f"\n=== model={model!r} ===")
@@ -77,12 +109,13 @@ def main():
             entry.update(outcome)
             results.append(entry)
             completed += 1
-            save(results)
+            save(entry)
 
-            if outcome["error"] and any(
-                kw in outcome["error"] for kw in ("unavailable", "Rate limited")
+            error_message = outcome["error"] or ""
+            if error_message and any(
+                kw in error_message for kw in ("unavailable", "Rate limited")
             ):
-                print(f"    SKIP MODEL: {outcome['error']}")
+                print(f"    SKIP MODEL: {error_message}")
                 skip_model = True
 
             time.sleep(RATE_LIMIT_DELAY)
