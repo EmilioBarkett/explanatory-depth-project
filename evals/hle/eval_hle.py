@@ -29,6 +29,24 @@ OUTPUT_FILE = OUTPUT_DIR / f"hle_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
 BEGIN_IDX = 1
 MAX_QUESTIONS = 5
 
+MODELS = [
+    ## Reasoning
+    "deepseek/deepseek-r1", #got thru first 18 questions
+    "openai/o3-mini", 
+    "qwen/qwq-32b",
+    "anthropic/claude-opus-4",
+    "google/gemini-2.5-pro",
+    "x-ai/grok-3",
+
+    ## Non-reasoning:
+    "openai/gpt-4o", 
+    "anthropic/claude-3.5-haiku",
+    "google/gemini-2.0-flash-001", 
+    # got 5 questions per model until here
+    "meta-llama/llama-3.3-70b-instruct",
+    "mistralai/mixtral-8x22b-instruct",
+    "cohere/command-a"
+]
 
 def load_questions(path: Path, begin_idx: int, limit: int) -> list[dict]:
     questions = []

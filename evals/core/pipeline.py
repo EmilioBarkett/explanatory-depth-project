@@ -21,7 +21,7 @@ load_dotenv()
 
 # ── API config ─────────────────────────────────────────────────────────────────
 
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "YOUR_API_KEY_HERE")
+OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
 OPENROUTER_URL     = "https://openrouter.ai/api/v1/chat/completions"
 
 REQUEST_TIMEOUT  = 60
@@ -33,9 +33,22 @@ RATE_LIMIT_DELAY = 1
 # Use this list in each eval, or override locally.
 
 MODELS = [
-    "anthropic/claude-3-5-haiku",
-    "google/gemini-flash-1.5",
-    "meta-llama/llama-3.1-8b-instruct",
+    ## Reasoning
+    "deepseek/deepseek-r1", 
+    "openai/o3-mini", 
+    "qwen/qwq-32b",
+    "anthropic/claude-opus-4",
+    "google/gemini-2.5-pro",
+    "x-ai/grok-3",
+
+    ## Non-reasoning:
+    "openai/gpt-4o", 
+    ### ERROR "anthropic/claude-3.5-sonnet",
+    "anthropic/claude-3.5-haiku",
+    "google/gemini-2.0-flash-001", 
+    "meta-llama/llama-3.3-70b-instruct",
+    "mistralai/mixtral-8x22b-instruct",
+    "cohere/command-a"
 ]
 
 # ── Prompt templates ───────────────────────────────────────────────────────────
