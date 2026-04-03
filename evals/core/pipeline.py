@@ -112,7 +112,24 @@ def call_openrouter(messages: list[dict], model: str) -> str:
                 timeout=REQUEST_TIMEOUT,
             )
             resp.raise_for_status()
-            return resp.json()["choices"][0]["message"]["content"].strip()
+
+            data = resp.json()
+            choices = data.get("choices") if isinstance(data, dict) else None
+            if not choices:
+                raise RuntimeError(
+                    f"Malformed response for '{model}': missing choices."
+                )
+
+            message = choices[0].get("message") if isinstance(choices[0], dict) else None
+            content = message.get("content") if isinstance(message, dict) else None
+
+            # Some providers may return non-string or null content for partial/failed generations.
+            if not isinstance(content, str) or not content.strip():
+                raise RuntimeError(
+                    f"Empty or invalid content returned for '{model}'."
+                )
+
+            return content.strip()
 
         except requests.exceptions.HTTPError as e:
             status = e.response.status_code if e.response else None
@@ -220,5 +237,10 @@ def run_three_turns(
     except (ModelNotFoundError, ModelRateLimitError, RuntimeError) as exc:
         result["error"] = str(exc)
         print(f"    ERROR: {exc}")
+
+    except (AttributeError, KeyError, TypeError, ValueError) as exc:
+        # Keep long runs alive even if a provider returns unexpected payloads.
+        result["error"] = f"Unexpected error for '{model}': {exc}"
+        print(f"    ERROR: {result['error']}")
 
     return result
