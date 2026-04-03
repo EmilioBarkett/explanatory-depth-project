@@ -14,38 +14,36 @@ No ground-truth answers available in this subset.
 import json
 import sys
 import time
-from datetime import datetime
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from evals.core.pipeline import MODELS, build_turn1_prompt, run_three_turns, RATE_LIMIT_DELAY, format_eta
 
 DATA_FILE   = Path(__file__).resolve().parents[2] / "data" / "hle_test.jsonl"
-OUTPUT_DIR  = Path(__file__).resolve().parents[2] / "results" / "full_run_HLE"
-OUTPUT_FILE = OUTPUT_DIR / f"hle_{datetime.now():%Y%m%d_%H%M%S}.jsonl"
+OUTPUT_DIR  = Path(__file__).resolve().parents[2] / "results" 
+OUTPUT_FILE = OUTPUT_DIR / "HLE_results.jsonl"
 
 # HLE has 2500 questions — cap for tractable runs. Adjust as needed.
 # BEGIN_IDX is 1-based and inclusive: BEGIN_IDX=51, MAX_QUESTIONS=50 loads questions 51-100.
-BEGIN_IDX = 1
-MAX_QUESTIONS = 5
+BEGIN_IDX = 19
+MAX_QUESTIONS = 2
 
-MODELS = [
+MODELS = [ #every model has done questions 1-10,
     ## Reasoning
     "deepseek/deepseek-r1", #got thru first 18 questions
-    "openai/o3-mini", 
-    "qwen/qwq-32b",
-    "anthropic/claude-opus-4",
-    "google/gemini-2.5-pro",
-    "x-ai/grok-3",
+    # "openai/o3-mini", 
+    # "qwen/qwq-32b",
+    # "anthropic/claude-opus-4",
+    # "google/gemini-2.5-pro",
+    # "x-ai/grok-3",
 
-    ## Non-reasoning:
-    "openai/gpt-4o", 
-    "anthropic/claude-3.5-haiku",
-    "google/gemini-2.0-flash-001", 
-    # got 5 questions per model until here
-    "meta-llama/llama-3.3-70b-instruct",
-    "mistralai/mixtral-8x22b-instruct",
-    "cohere/command-a"
+    # ## Non-reasoning:
+    # "openai/gpt-4o", 
+    # "anthropic/claude-3.5-haiku",
+    # "google/gemini-2.0-flash-001", 
+    # "meta-llama/llama-3.3-70b-instruct",
+    # "mistralai/mixtral-8x22b-instruct",
+    # "cohere/command-a"
 ]
 
 def load_questions(path: Path, begin_idx: int, limit: int) -> list[dict]:
