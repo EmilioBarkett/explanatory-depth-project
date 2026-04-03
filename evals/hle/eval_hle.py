@@ -25,25 +25,25 @@ OUTPUT_FILE = OUTPUT_DIR / "HLE_results.jsonl"
 
 # HLE has 2500 questions — cap for tractable runs. Adjust as needed.
 # BEGIN_IDX is 1-based and inclusive: BEGIN_IDX=51, MAX_QUESTIONS=50 loads questions 51-100.
-BEGIN_IDX = 19
-MAX_QUESTIONS = 2
+BEGIN_IDX = 21
+MAX_QUESTIONS = 10
 
-MODELS = [ #every model has done questions 1-10,
+MODELS = [ #every model has done questions 1-20,
     ## Reasoning
-    "deepseek/deepseek-r1", #got thru first 18 questions
-    # "openai/o3-mini", 
-    # "qwen/qwq-32b",
-    # "anthropic/claude-opus-4",
-    # "google/gemini-2.5-pro",
-    # "x-ai/grok-3",
+    "deepseek/deepseek-r1", 
+    "openai/o3-mini", 
+    "qwen/qwq-32b",
+    "anthropic/claude-opus-4",
+    "google/gemini-2.5-pro",
+    "x-ai/grok-3",
 
-    # ## Non-reasoning:
-    # "openai/gpt-4o", 
-    # "anthropic/claude-3.5-haiku",
-    # "google/gemini-2.0-flash-001", 
-    # "meta-llama/llama-3.3-70b-instruct",
-    # "mistralai/mixtral-8x22b-instruct",
-    # "cohere/command-a"
+    ## Non-reasoning:
+    "openai/gpt-4o", 
+    "anthropic/claude-3.5-haiku",
+    "google/gemini-2.0-flash-001", 
+    "meta-llama/llama-3.3-70b-instruct",
+    "mistralai/mixtral-8x22b-instruct",
+    "cohere/command-a"
 ]
 
 def load_questions(path: Path, begin_idx: int, limit: int) -> list[dict]:

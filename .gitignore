@@ -1,2 +1,3 @@
 .env
 data/corr2cause_dataset.json
+evals/core/__pycache__
