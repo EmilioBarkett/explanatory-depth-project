@@ -33,11 +33,21 @@ from pathlib import Path
 INPUT_FILE = Path(__file__).resolve().parents[2] / "results" / "HLE_results.jsonl"
 OUTPUT_FILE = Path(__file__).resolve().parents[2] / "analysis" / "HLE_first_run"
 
+REASONING_MODELS = {
+    "deepseek/deepseek-r1",
+    "openai/o3-mini",
+    "qwen/qwq-32b",
+    "anthropic/claude-opus-4",
+    "google/gemini-2.5-pro",
+    "x-ai/grok-3",
+}
+
 
 @dataclass(frozen=True)
 class Row:
     """Normalized view of one JSONL entry."""
 
+    question_id: str
     model: str
     category: str
     first_rating: int
@@ -64,6 +74,7 @@ def load_rows(path: Path) -> list[Row]:
 
             first_rating = record.get("first_rating")
             second_rating = record.get("second_rating")
+            question_id = record.get("question_id") or record.get("id") or "unknown"
             model = record.get("model") or "unknown"
             category = record.get("category") or "unknown"
 
@@ -72,6 +83,7 @@ def load_rows(path: Path) -> list[Row]:
 
             rows.append(
                 Row(
+                    question_id=str(question_id),
                     model=str(model),
                     category=str(category),
                     first_rating=int(first_rating),
@@ -115,6 +127,10 @@ def format_num(value: float) -> str:
     return f"{value:7.2f}"
 
 
+def display_model_name(model: str) -> str:
+    return model.split("/", 1)[1] if "/" in model else model
+
+
 def _group_label_width(grouped: dict[str, list[Row]], minimum: int) -> int:
     widest = max((len(name) for name in grouped), default=minimum)
     return max(minimum, widest)
@@ -146,14 +162,45 @@ def print_table(title: str, grouped: dict[str, list[Row]], *, include_category: 
         )
 
 
+def print_model_table(grouped: dict[str, list[Row]]) -> None:
+    title = "\nBy Model"
+    print(title)
+    label_width = max((len(display_model_name(name)) for name in grouped), default=30)
+    label_width = max(label_width, len("Group"))
+    header = (
+        f"{'Group':<{label_width}} {'reasoning':>14} {'n':>5} {'R1':>7} {'R2':>7} "
+        f"{'Δ':>7} {'medΔ':>7} {'varΔ':>7} {'drop%':>8} {'rise%':>8} {'flat%':>8}"
+    )
+    print(header)
+    print("-" * len(header))
+
+    for model_name in sorted(grouped):
+        summary = summarize(grouped[model_name])
+        reasoning_label = "Y" if model_name in REASONING_MODELS else "N"
+        shown_name = display_model_name(model_name)
+        print(
+            f"{shown_name:<{label_width}} "
+            f"{reasoning_label:>14} "
+            f"{summary['n']:>5} "
+            f"{format_num(summary['avg_first']):>7} "
+            f"{format_num(summary['avg_second']):>7} "
+            f"{format_num(summary['avg_delta']):>7} "
+            f"{format_num(summary['median_delta']):>7} "
+            f"{format_num(summary['var_delta']):>7} "
+            f"{format_pct(summary['drop_rate']):>8} "
+            f"{format_pct(summary['rise_rate']):>8} "
+            f"{format_pct(summary['flat_rate']):>8}"
+        )
+
+
 def print_model_category_table(rows: list[Row]) -> None:
     grouped = group_rows(rows, lambda row: (row.model, row.category))
-    model_width = max((len(model) for model, _ in grouped), default=5)
+    model_width = max((len(display_model_name(model)) for model, _ in grouped), default=5)
     category_width = max((len(category) for _, category in grouped), default=8)
     model_width = max(model_width, len("Model"))
     category_width = max(category_width, len("Category"))
 
-    print("\nBy Model x Category")
+    print("\nBy Model x Question Category")
     header = (
         f"{'Model':<{model_width}}  "
         f"{'Category':<{category_width}}  "
@@ -164,8 +211,9 @@ def print_model_category_table(rows: list[Row]) -> None:
 
     for model, category in sorted(grouped):
         summary = summarize(grouped[(model, category)])
+        shown_name = display_model_name(model)
         print(
-            f"{model:<{model_width}}  "
+            f"{shown_name:<{model_width}}  "
             f"{category:<{category_width}}  "
             f"{summary['n']:>5} "
             f"{format_num(summary['avg_first']):>7} "
@@ -177,6 +225,14 @@ def print_model_category_table(rows: list[Row]) -> None:
             f"{format_pct(summary['rise_rate']):>8} "
             f"{format_pct(summary['flat_rate']):>8}"
         )
+
+
+def print_reasoning_category_table(rows: list[Row]) -> None:
+    grouped = group_rows(
+        rows,
+        lambda row: "reasoning_model" if row.model in REASONING_MODELS else "non_reasoning",
+    )
+    print_table("\nBy Reasoning Category", grouped)
 
 
 def print_overall(rows: list[Row]) -> None:
@@ -196,17 +252,22 @@ def print_overall(rows: list[Row]) -> None:
 def print_extremes(rows: list[Row], limit: int = 10) -> None:
     sorted_rows = sorted(rows, key=lambda row: (row.delta, row.model, row.category))
 
+    model_width = max((len(display_model_name(row.model)) for row in rows), default=35)
+    model_width = max(model_width, len("model"))
+
     print("\nLargest confidence drops (lowest deltas)")
-    print(f"{'model':<30} {'category':<24} {'R1':>4} {'R2':>4} {'Δ':>4}")
-    print("-" * 72)
+    print(f"{'model':<{model_width}} {'category':<26} {'question_id':<25} {'R1':>4} {'R2':>4} {'Δ':>4}")
+    print("-" * (model_width + 42))
     for row in sorted_rows[:limit]:
-        print(f"{row.model:<30} {row.category:<24} {row.first_rating:>4} {row.second_rating:>4} {row.delta:>4}")
+        shown_name = display_model_name(row.model)
+        print(f"{shown_name:<{model_width}} {row.category:<26} {row.question_id:<25} {row.first_rating:>4} {row.second_rating:>4} {row.delta:>4}")
 
     print("\nLargest confidence increases (highest deltas)")
-    print(f"{'model':<30} {'category':<24} {'R1':>4} {'R2':>4} {'Δ':>4}")
-    print("-" * 72)
+    print(f"{'model':<{model_width}} {'category':<26} {'question_id':<25} {'R1':>4} {'R2':>4} {'Δ':>4}")
+    print("-" * (model_width + 42))
     for row in sorted_rows[-limit:][::-1]:
-        print(f"{row.model:<30} {row.category:<24} {row.first_rating:>4} {row.second_rating:>4} {row.delta:>4}")
+        shown_name = display_model_name(row.model)
+        print(f"{shown_name:<{model_width}} {row.category:<26} {row.question_id:<25} {row.first_rating:>4} {row.second_rating:>4} {row.delta:>4}")
 
 
 def parse_args() -> argparse.Namespace:
@@ -231,8 +292,9 @@ def main() -> None:
 
         by_model = group_rows(rows, lambda row: row.model)
         by_category = group_rows(rows, lambda row: row.category)
-        print_table("\nBy Model", by_model)
-        print_table("\nBy Category", by_category)
+        print_model_table(by_model)
+        print_reasoning_category_table(rows)
+        print_table("\nBy Question Category", by_category)
         print_model_category_table(rows)
         print_extremes(rows, limit=args.top_n)
 

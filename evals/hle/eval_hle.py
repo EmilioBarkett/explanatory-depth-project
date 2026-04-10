@@ -25,10 +25,10 @@ OUTPUT_FILE = OUTPUT_DIR / "HLE_results.jsonl"
 
 # HLE has 2500 questions — cap for tractable runs. Adjust as needed.
 # BEGIN_IDX is 1-based and inclusive: BEGIN_IDX=51, MAX_QUESTIONS=50 loads questions 51-100.
-BEGIN_IDX = 21
+BEGIN_IDX = 31
 MAX_QUESTIONS = 10
 
-MODELS = [ #every model has done questions 1-20,
+MODELS = [ #every model has done questions 1-30,
     ## Reasoning
     "deepseek/deepseek-r1", 
     "openai/o3-mini", 
