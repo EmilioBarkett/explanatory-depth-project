@@ -1,0 +1,210 @@
+Loaded 1134 scored rows from /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE_results.jsonl
+Overall
+  n            : 1134
+  avg first    : 7.82
+  avg second   : 7.91
+  avg delta    : +0.08
+  median delta : +0.00
+  var delta    : 5.97
+  drop rate    : 23.2%
+  rise rate    : 37.6%
+  flat rate    : 39.2%
+  95% CI (Δ)   : [-0.06, +0.22]
+  t-stat (Δ=0) : 1.13
+  p-value (t)  : 0.259
+  Wilcoxon W   : 107480.00
+  p-value (W)  : 0.026
+  p-value sign : <0.001
+  Cohen's dz   : 0.03
+
+By Model
+Group                       reasoning     n      R1      R2       Δ    medΔ    varΔ    drop%    rise%    flat%
+--------------------------------------------------------------------------------------------------------------
+claude-3.5-haiku                    N    81    7.59    7.32   -0.27    0.00    6.57    48.1%    45.7%     6.2%
+claude-opus-4                       Y   113    7.29    6.48   -0.81   -1.00   11.60    57.5%    32.7%     9.7%
+command-a                           N    89    7.80    8.96    1.16    1.00    4.72     5.6%    60.7%    33.7%
+deepseek-r1                         Y    88    7.33    7.84    0.51    0.00    2.45     4.5%    35.2%    60.2%
+gemini-2.0-flash-001                N    89    8.76    8.54   -0.22    0.00    6.35    27.0%    27.0%    46.1%
+gemini-2.5-pro                      Y   106    8.87    9.64    0.77    0.00    4.06     3.8%    49.1%    47.2%
+llama-3.3-70b-instruct              N    85    7.13    5.89   -1.24    0.00   12.86    48.2%    34.1%    17.6%
+mixtral-8x22b-instruct              N    89    7.51    8.27    0.76    1.00    6.45    22.5%    52.8%    24.7%
+gpt-4o                              N    87    7.98    7.91   -0.07    0.00    7.21    23.0%    36.8%    40.2%
+o3-mini                             Y   119    8.10    8.07   -0.03    0.00    0.37     1.7%     1.7%    96.6%
+qwq-32b                             Y    99    7.35    7.97    0.62    0.00    2.90     9.1%    45.5%    45.5%
+grok-3                              Y    89    8.03    7.84   -0.19    0.00    1.86    33.7%    40.4%    25.8%
+
+
+By Reasoning Category
+Group                              n      R1      R2       Δ    medΔ    varΔ    drop%    rise%    flat%
+-------------------------------------------------------------------------------------------------------
+non_reasoning                    520    7.80    7.84    0.03    0.00    7.93    28.7%    42.9%    28.5%
+reasoning_model                  614    7.84    7.97    0.12    0.00    4.31    18.6%    33.1%    48.4%
+
+
+By Question Category
+Group                              n      R1      R2       Δ    medΔ    varΔ    drop%    rise%    flat%
+-------------------------------------------------------------------------------------------------------
+Biology/Medicine                 127    7.73    8.59    0.86    0.00    6.94    11.8%    40.9%    47.2%
+Chemistry                        101    7.43    8.12    0.69    0.00    4.27    12.9%    43.6%    43.6%
+Computer Science/AI              151    8.01    7.85   -0.16    0.00    4.82    25.8%    37.7%    36.4%
+Engineering                       23    7.74    7.96    0.22    1.00    1.91    21.7%    52.2%    26.1%
+Humanities/Social Science         86    7.76    7.69   -0.07    0.00    6.58    19.8%    38.4%    41.9%
+Math                             428    7.83    7.75   -0.07    0.00    6.28    28.0%    35.3%    36.7%
+Other                            138    8.14    7.97   -0.17    0.00    5.89    24.6%    35.5%    39.9%
+Physics                           80    7.66    7.59   -0.07    0.00    5.92    25.0%    35.0%    40.0%
+
+Inferential Stats by Model
+Group                                 n    meanΔ   CI low  CI high        t     p(t)        W     p(W)   p(sign)       dz
+-------------------------------------------------------------------------------------------------------------------------
+anthropic/claude-3.5-haiku           81    -0.27    -0.84     0.30    -0.95    0.346  1152.50    0.100     0.909    -0.11
+anthropic/claude-opus-4             113    -0.81    -1.45    -0.18    -2.53    0.013  1563.50   <0.001     0.007    -0.24
+cohere/command-a                     89     1.16     0.70     1.62     5.00   <0.001   201.00   <0.001    <0.001     0.53
+deepseek/deepseek-r1                 88     0.51     0.18     0.85     3.04    0.003    74.00   <0.001    <0.001     0.32
+google/gemini-2.0-flash-001          89    -0.22    -0.76     0.31    -0.84    0.405   548.50    0.688     1.000    -0.09
+google/gemini-2.5-pro               106     0.77     0.38     1.16     3.93   <0.001   173.00   <0.001    <0.001     0.38
+meta-llama/llama-3.3-70b-instruct    85    -1.24    -2.01    -0.46    -3.16    0.002   624.00   <0.001     0.188    -0.34
+mistralai/mixtral-8x22b-instruct     89     0.76     0.23     1.30     2.82    0.006   640.00    0.001     0.001     0.30
+openai/gpt-4o                        87    -0.07    -0.64     0.51    -0.24    0.812   652.50    0.731     0.126    -0.03
+openai/o3-mini                      119    -0.03    -0.14     0.08    -0.60    0.549     3.50    0.625     1.000    -0.06
+qwen/qwq-32b                         99     0.62     0.27     0.96     3.58   <0.001   266.00   <0.001    <0.001     0.36
+x-ai/grok-3                          89    -0.19    -0.48     0.10    -1.31    0.193   972.00    0.361     0.539    -0.14
+
+Inferential Stats by Question Category
+Group                              n    meanΔ   CI low  CI high        t     p(t)        W     p(W)   p(sign)       dz
+----------------------------------------------------------------------------------------------------------------------
+Biology/Medicine                 127     0.86     0.39     1.32     3.66   <0.001   497.50   <0.001    <0.001     0.32
+Chemistry                        101     0.69     0.28     1.10     3.35    0.001   398.50   <0.001    <0.001     0.33
+Computer Science/AI              151    -0.16    -0.51     0.20    -0.89    0.377  2320.50    0.978     0.082    -0.07
+Engineering                       23     0.22    -0.39     0.83     0.74    0.468    58.50    0.431     0.143     0.15
+Humanities/Social Science         86    -0.07    -0.62     0.48    -0.25    0.803   591.50    0.667     0.033    -0.03
+Math                             428    -0.07    -0.31     0.16    -0.62    0.538 18090.50    0.791     0.068    -0.03
+Other                            138    -0.17    -0.58     0.24    -0.80    0.423  1728.50    0.947     0.124    -0.07
+Physics                           80    -0.07    -0.62     0.47    -0.27    0.785   586.50    0.988     0.312    -0.03
+
+By Model x Question Category
+Model                   Category                       n      R1      R2       Δ    medΔ    varΔ    drop%    rise%    flat%
+---------------------------------------------------------------------------------------------------------------------------
+claude-3.5-haiku        Biology/Medicine               7    8.29    8.86    0.57    1.00    1.10    28.6%    71.4%     0.0%
+claude-3.5-haiku        Chemistry                      6    7.83    9.50    1.67    1.00    3.89     0.0%    83.3%    16.7%
+claude-3.5-haiku        Computer Science/AI           13    7.92    6.54   -1.38   -2.00    4.54    76.9%    15.4%     7.7%
+claude-3.5-haiku        Engineering                    2    7.00    8.50    1.50    1.50    0.25     0.0%   100.0%     0.0%
+claude-3.5-haiku        Humanities/Social Science      5    8.00    6.20   -1.80   -2.00    8.56    60.0%    40.0%     0.0%
+claude-3.5-haiku        Math                          32    7.06    6.72   -0.34   -1.00    6.41    56.2%    40.6%     3.1%
+claude-3.5-haiku        Other                         10    7.80    7.80    0.00    0.00   10.40    40.0%    40.0%    20.0%
+claude-3.5-haiku        Physics                        6    8.17    8.00   -0.17    1.00    4.47    33.3%    66.7%     0.0%
+claude-opus-4           Biology/Medicine              14    7.07    8.71    1.64    1.00   12.37    28.6%    64.3%     7.1%
+claude-opus-4           Chemistry                     12    7.00    7.00    0.00    0.00    7.50    41.7%    33.3%    25.0%
+claude-opus-4           Computer Science/AI           13    7.77    6.31   -1.46   -1.00    5.17    53.8%    23.1%    23.1%
+claude-opus-4           Engineering                    2    7.00    6.00   -1.00   -1.00    4.00    50.0%    50.0%     0.0%
+claude-opus-4           Humanities/Social Science     10    6.80    6.00   -0.80   -0.50   19.36    50.0%    30.0%    20.0%
+claude-opus-4           Math                          43    7.26    5.65   -1.60   -1.00   11.26    72.1%    25.6%     2.3%
+claude-opus-4           Other                         12    7.33    6.58   -0.75   -1.00   12.35    66.7%    33.3%     0.0%
+claude-opus-4           Physics                        7    8.29    7.14   -1.14   -1.00    2.98    57.1%    28.6%    14.3%
+command-a               Biology/Medicine               9    6.44    9.44    3.00    2.00   14.67     0.0%    66.7%    33.3%
+command-a               Chemistry                      6    7.00    8.17    1.17    1.00    1.81     0.0%    66.7%    33.3%
+command-a               Computer Science/AI           13    7.46    8.54    1.08    1.00    1.30     0.0%    53.8%    46.2%
+command-a               Engineering                    2    7.50    9.00    1.50    1.50    0.25     0.0%   100.0%     0.0%
+command-a               Humanities/Social Science      6    8.00    8.67    0.67    0.50    0.56     0.0%    50.0%    50.0%
+command-a               Math                          34    8.15    9.09    0.94    1.00    4.58     8.8%    61.8%    29.4%
+command-a               Other                         12    8.25    9.08    0.83    1.00    2.97     8.3%    66.7%    25.0%
+command-a               Physics                        7    8.29    9.14    0.86    0.00    4.12    14.3%    42.9%    42.9%
+deepseek-r1             Biology/Medicine              13    6.69    7.31    0.62    0.00    1.47     0.0%    23.1%    76.9%
+deepseek-r1             Chemistry                     10    7.20    7.50    0.30    0.00    0.41     0.0%    20.0%    80.0%
+deepseek-r1             Computer Science/AI            9    7.89    8.78    0.89    0.00    5.21    11.1%    22.2%    66.7%
+deepseek-r1             Engineering                    1    7.00    7.00    0.00    0.00    0.00     0.0%     0.0%   100.0%
+deepseek-r1             Humanities/Social Science      8    6.88    7.88    1.00    0.50    1.25     0.0%    50.0%    50.0%
+deepseek-r1             Math                          30    7.63    7.73    0.10    0.00    3.62    10.0%    36.7%    53.3%
+deepseek-r1             Other                         11    7.82    8.91    1.09    1.00    1.17     0.0%    54.5%    45.5%
+deepseek-r1             Physics                        6    6.33    6.83    0.50    0.50    0.25     0.0%    50.0%    50.0%
+gemini-2.0-flash-001    Biology/Medicine               9    9.56    9.33   -0.22    0.00    3.28    11.1%    22.2%    66.7%
+gemini-2.0-flash-001    Chemistry                      6    7.83    8.67    0.83    1.50    2.14    16.7%    66.7%    16.7%
+gemini-2.0-flash-001    Computer Science/AI           13    9.54    8.85   -0.69    0.00    6.37    23.1%    23.1%    53.8%
+gemini-2.0-flash-001    Engineering                    2    7.00    7.50    0.50    0.50    2.25    50.0%    50.0%     0.0%
+gemini-2.0-flash-001    Humanities/Social Science      6    9.17    8.00   -1.17    0.00    9.81    33.3%    33.3%    33.3%
+gemini-2.0-flash-001    Math                          34    8.32    8.47    0.15    0.00    6.07    35.3%    17.6%    47.1%
+gemini-2.0-flash-001    Other                         12    9.42    9.00   -0.42    0.00    7.24    16.7%    33.3%    50.0%
+gemini-2.0-flash-001    Physics                        7    8.29    7.14   -1.14    0.00    8.12    28.6%    28.6%    42.9%
+gemini-2.5-pro          Biology/Medicine              12    8.92   10.00    1.08    0.00    7.41     0.0%    33.3%    66.7%
+gemini-2.5-pro          Chemistry                     13    7.38    9.85    2.46    1.00   12.25     0.0%    61.5%    38.5%
+gemini-2.5-pro          Computer Science/AI           14    9.00    9.36    0.36    1.00    2.66     7.1%    57.1%    35.7%
+gemini-2.5-pro          Engineering                    2    9.00   10.00    1.00    1.00    0.00     0.0%   100.0%     0.0%
+gemini-2.5-pro          Humanities/Social Science      7    9.29   10.00    0.71    1.00    0.49     0.0%    57.1%    42.9%
+gemini-2.5-pro          Math                          40    9.22    9.75    0.53    0.00    1.55     2.5%    47.5%    50.0%
+gemini-2.5-pro          Other                         12    8.83    9.17    0.33    0.00    0.39     8.3%    41.7%    50.0%
+gemini-2.5-pro          Physics                        6    8.83    8.83    0.00    0.00    4.33    16.7%    33.3%    50.0%
+llama-3.3-70b-instruct  Biology/Medicine               9    6.89    9.56    2.67    1.00   15.56     0.0%    66.7%    33.3%
+llama-3.3-70b-instruct  Chemistry                      6    6.67    6.17   -0.50    0.50    3.58    33.3%    50.0%    16.7%
+llama-3.3-70b-instruct  Computer Science/AI           12    7.75    5.33   -2.42   -2.00   11.58    66.7%    33.3%     0.0%
+llama-3.3-70b-instruct  Engineering                    2    8.00    9.00    1.00    1.00    0.00     0.0%   100.0%     0.0%
+llama-3.3-70b-instruct  Humanities/Social Science      6    6.67    6.00   -0.67   -1.00    1.89    50.0%    33.3%    16.7%
+llama-3.3-70b-instruct  Math                          33    6.88    5.09   -1.79   -2.00   12.77    57.6%    24.2%    18.2%
+llama-3.3-70b-instruct  Other                         10    8.60    6.10   -2.50   -2.00   10.85    60.0%    30.0%    10.0%
+llama-3.3-70b-instruct  Physics                        7    6.00    4.43   -1.57    0.00    7.96    42.9%    14.3%    42.9%
+mixtral-8x22b-instruct  Biology/Medicine               9    8.22    8.22    0.00    0.00    1.33    33.3%    33.3%    33.3%
+mixtral-8x22b-instruct  Chemistry                      6    7.17    8.00    0.83    1.00    1.81    16.7%    83.3%     0.0%
+mixtral-8x22b-instruct  Computer Science/AI           13    8.31    8.62    0.31    0.00    1.91    23.1%    38.5%    38.5%
+mixtral-8x22b-instruct  Engineering                    2    8.00    7.50   -0.50   -0.50    0.25    50.0%     0.0%    50.0%
+mixtral-8x22b-instruct  Humanities/Social Science      6    8.00    8.67    0.67    0.50    1.22    16.7%    50.0%    33.3%
+mixtral-8x22b-instruct  Math                          34    7.00    8.18    1.18    1.00   10.38    17.6%    64.7%    17.6%
+mixtral-8x22b-instruct  Other                         12    8.08    8.50    0.42    1.00    4.08    25.0%    58.3%    16.7%
+mixtral-8x22b-instruct  Physics                        7    6.29    7.86    1.57    0.00   13.39    28.6%    28.6%    42.9%
+gpt-4o                  Biology/Medicine               9    8.00    9.11    1.11    1.00   13.21    11.1%    66.7%    22.2%
+gpt-4o                  Chemistry                      5    8.00    8.20    0.20    0.00    0.96    20.0%    20.0%    60.0%
+gpt-4o                  Computer Science/AI           12    7.75    8.00    0.25    0.00    2.02    25.0%    33.3%    41.7%
+gpt-4o                  Engineering                    2    7.50    7.00   -0.50   -0.50    2.25    50.0%    50.0%     0.0%
+gpt-4o                  Humanities/Social Science      6    7.83    7.50   -0.33    0.50   22.89    16.7%    50.0%    33.3%
+gpt-4o                  Math                          34    8.03    8.26    0.24    0.00    3.59    20.6%    41.2%    38.2%
+gpt-4o                  Other                         12    8.00    6.50   -1.50    0.00    8.92    33.3%     8.3%    58.3%
+gpt-4o                  Physics                        7    8.29    7.29   -1.00    0.00    8.57    28.6%    28.6%    42.9%
+o3-mini                 Biology/Medicine              14    8.00    8.00    0.00    0.00    0.00     0.0%     0.0%   100.0%
+o3-mini                 Chemistry                     15    8.00    8.07    0.07    0.00    0.06     0.0%     6.7%    93.3%
+o3-mini                 Computer Science/AI           14    8.14    8.36    0.21    0.00    0.60     0.0%     7.1%    92.9%
+o3-mini                 Engineering                    2    7.50    7.50    0.00    0.00    0.00     0.0%     0.0%   100.0%
+o3-mini                 Humanities/Social Science     10    6.80    6.80    0.00    0.00    0.00     0.0%     0.0%   100.0%
+o3-mini                 Math                          44    8.52    8.34   -0.18    0.00    0.74     4.5%     0.0%    95.5%
+o3-mini                 Other                         13    7.54    7.54    0.00    0.00    0.00     0.0%     0.0%   100.0%
+o3-mini                 Physics                        7    8.86    8.86    0.00    0.00    0.00     0.0%     0.0%   100.0%
+qwq-32b                 Biology/Medicine              13    7.23    7.46    0.23    0.00    0.95    15.4%    23.1%    61.5%
+qwq-32b                 Chemistry                     10    7.10    8.00    0.90    0.00    1.29     0.0%    40.0%    60.0%
+qwq-32b                 Computer Science/AI           12    7.00    7.58    0.58    1.00    4.58     8.3%    75.0%    16.7%
+qwq-32b                 Engineering                    2    9.00    7.50   -1.50   -1.50    2.25    50.0%     0.0%    50.0%
+qwq-32b                 Humanities/Social Science     10    8.20    9.00    0.80    0.50    0.96     0.0%    50.0%    50.0%
+qwq-32b                 Math                          36    7.44    8.08    0.64    0.00    3.95     8.3%    47.2%    44.4%
+qwq-32b                 Other                         10    7.50    8.10    0.60    0.00    1.44    10.0%    30.0%    60.0%
+qwq-32b                 Physics                        6    6.00    7.33    1.33    1.00    3.56    16.7%    66.7%    16.7%
+grok-3                  Biology/Medicine               9    8.11    8.00   -0.11    1.00    2.77    22.2%    55.6%    22.2%
+grok-3                  Chemistry                      6    8.00    8.00    0.00    0.00    1.00    50.0%    50.0%     0.0%
+grok-3                  Computer Science/AI           13    7.31    7.85    0.54    1.00    0.56    15.4%    69.2%    15.4%
+grok-3                  Engineering                    2    8.00    8.50    0.50    0.50    0.25     0.0%    50.0%    50.0%
+grok-3                  Humanities/Social Science      6    8.50    7.67   -0.83    0.00    4.47    33.3%    33.3%    33.3%
+grok-3                  Math                          34    8.06    7.56   -0.50    0.00    1.84    44.1%    26.5%    29.4%
+grok-3                  Other                         12    8.42    8.17   -0.25    0.00    1.52    33.3%    33.3%    33.3%
+grok-3                  Physics                        7    8.14    8.29    0.14    0.00    0.69    28.6%    42.9%    28.6%
+
+Largest confidence drops (lowest deltas)
+model                  category                   question_id                 R1   R2    Δ
+----------------------------------------------------------------
+llama-3.3-70b-instruct Computer Science/AI        66e907c51440516dd6ab54fb    10    0  -10
+llama-3.3-70b-instruct Math                       66e89811ca68059533a83566    10    0  -10
+llama-3.3-70b-instruct Math                       671d56738411174e64735f59    10    0  -10
+gpt-4o                 Humanities/Social Science  671dfacd16b873a455cbd5e0    10    0  -10
+deepseek-r1            Math                       66e8c151efbbc8b5a54da02b     9    0   -9
+gemini-2.0-flash-001   Computer Science/AI        66e91bc08dd8f00467e3d5d8    10    1   -9
+gemini-2.0-flash-001   Other                      66e906f860abc895aedcf467    10    1   -9
+mixtral-8x22b-instruct Math                       671d56738411174e64735f59    10    1   -9
+claude-opus-4          Math                       671d70b42f937e77ea5cb0cc    10    2   -8
+command-a              Math                       67955d8d28dc0cc835a5c3c1    10    2   -8
+
+Largest confidence increases (highest deltas)
+model                  category                   question_id                 R1   R2    Δ
+----------------------------------------------------------------
+gpt-4o                 Biology/Medicine           671da0bbbb27b8f41a423e7c     0   10   10
+mixtral-8x22b-instruct Physics                    66b727d367968fa27f2dddda     0   10   10
+llama-3.3-70b-instruct Biology/Medicine           671dacdd355c956ce7de5aa5     0   10   10
+llama-3.3-70b-instruct Biology/Medicine           671da0bbbb27b8f41a423e7c     0   10   10
+gemini-2.5-pro         Chemistry                  66e8ae613aa94517d4573b33     0   10   10
+gemini-2.5-pro         Biology/Medicine           671da0bbbb27b8f41a423e7c     0   10   10
+gemini-2.0-flash-001   Math                       669402b41dcb3d5a1ef9e951     0   10   10
+command-a              Biology/Medicine           671dacdd355c956ce7de5aa5     0   10   10
+command-a              Biology/Medicine           671da0bbbb27b8f41a423e7c     0   10   10
+claude-opus-4          Math                       6700bb8d01cdb8b38460e401     0   10   10
