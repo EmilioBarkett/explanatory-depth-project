@@ -94,7 +94,6 @@ def main():
 def _print_summary(results: list[dict]) -> None:
     import statistics
 
-    # Group by study x model
     groups: dict[tuple, list] = {}
     for r in results:
         key = (r["study"], r["model"])

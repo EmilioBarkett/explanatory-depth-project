@@ -2,81 +2,380 @@
   {
     "study": "devices",
     "description": "48 phenomena used in Studies 1-4. Participants rated understanding on 1-7 scale, then tried to explain step-by-step. Humans showed large drops in self-rated knowledge after attempting explanations (IOED). Test items (subset of 8) marked with 'is_test_item': true.",
+    "note": "The paper confirms 8 test items were explained between-subjects (Table 8), but the specific list was only in supplemental materials. The 'is_test_item' flags here are inferred, not confirmed from the original source.",
     "items": [
-      {"id": "dev_01", "question": "How does a sewing machine work?", "category": "devices", "is_test_item": true},
-      {"id": "dev_02", "question": "How does a flush toilet operate?", "category": "devices", "is_test_item": true},
-      {"id": "dev_03", "question": "How does an LCD screen work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_04", "question": "How does a hydroelectric turbine change water pressure into electricity?", "category": "devices", "is_test_item": false},
-      {"id": "dev_05", "question": "How does a can opener work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_06", "question": "How does a car battery store electricity?", "category": "devices", "is_test_item": false},
-      {"id": "dev_07", "question": "How does a 35mm camera (single-lens reflex camera) make images on film?", "category": "devices", "is_test_item": false},
-      {"id": "dev_08", "question": "How does a jet engine produce thrust?", "category": "devices", "is_test_item": false},
-      {"id": "dev_09", "question": "How does a zipper work?", "category": "devices", "is_test_item": true},
-      {"id": "dev_10", "question": "How does a self-winding watch run without batteries?", "category": "devices", "is_test_item": false},
-      {"id": "dev_11", "question": "How does a cellular phone work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_12", "question": "How does a microchip process information?", "category": "devices", "is_test_item": false},
-      {"id": "dev_13", "question": "How does a greenhouse work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_14", "question": "How does the U.S. Supreme Court determine the constitutionality of laws?", "category": "devices", "is_test_item": false},
-      {"id": "dev_15", "question": "How does a fluorescent light work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_16", "question": "How does a photocopier make copies?", "category": "devices", "is_test_item": false},
-      {"id": "dev_17", "question": "How does a nuclear reactor produce electricity?", "category": "devices", "is_test_item": false},
-      {"id": "dev_18", "question": "How does a car ignition system start the engine?", "category": "devices", "is_test_item": false},
-      {"id": "dev_19", "question": "How does a speedometer work?", "category": "devices", "is_test_item": true},
-      {"id": "dev_20", "question": "How does the liver remove toxins from blood?", "category": "devices", "is_test_item": false},
-      {"id": "dev_21", "question": "How does the heart pump blood?", "category": "devices", "is_test_item": false},
-      {"id": "dev_22", "question": "How does a car differential help the car turn?", "category": "devices", "is_test_item": false},
-      {"id": "dev_23", "question": "How does a water faucet control water flow?", "category": "devices", "is_test_item": false},
-      {"id": "dev_24", "question": "How do the presidential elections determine the next president?", "category": "devices", "is_test_item": false},
-      {"id": "dev_25", "question": "How does a quartz watch keep time?", "category": "devices", "is_test_item": true},
-      {"id": "dev_26", "question": "How does steam central heating warm large buildings?", "category": "devices", "is_test_item": false},
-      {"id": "dev_27", "question": "How does a VCR work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_28", "question": "How does a snare catch small animals?", "category": "devices", "is_test_item": false},
-      {"id": "dev_29", "question": "How does a car's gearbox work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_30", "question": "How does an incinerator work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_31", "question": "How does a cylinder lock open with a key?", "category": "devices", "is_test_item": true},
-      {"id": "dev_32", "question": "How does a television create pictures?", "category": "devices", "is_test_item": false},
-      {"id": "dev_33", "question": "How does a helicopter fly?", "category": "devices", "is_test_item": true},
-      {"id": "dev_34", "question": "How does a ball-point pen write?", "category": "devices", "is_test_item": false},
-      {"id": "dev_35", "question": "How does a radio receiver work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_36", "question": "How does an electric motor change electricity into movement?", "category": "devices", "is_test_item": false},
-      {"id": "dev_37", "question": "How does a telephone transmit sound through wires?", "category": "devices", "is_test_item": false},
-      {"id": "dev_38", "question": "How do piano keys make sounds?", "category": "devices", "is_test_item": true},
-      {"id": "dev_39", "question": "How does a fireplace work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_40", "question": "How does a spray-bottle spray liquids?", "category": "devices", "is_test_item": false},
-      {"id": "dev_41", "question": "How does a solid-fuel rocket produce thrust?", "category": "devices", "is_test_item": false},
-      {"id": "dev_42", "question": "How does a manual clutch work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_43", "question": "How does an aqualung (Scuba-gear) regulate air-pressure?", "category": "devices", "is_test_item": false},
-      {"id": "dev_44", "question": "How does an Ethernet network allow computers to share files?", "category": "devices", "is_test_item": false},
-      {"id": "dev_45", "question": "How does a computer mouse control the pointer on a computer screen?", "category": "devices", "is_test_item": false},
-      {"id": "dev_46", "question": "How does a transistor work?", "category": "devices", "is_test_item": false},
-      {"id": "dev_47", "question": "How does a scanner capture images?", "category": "devices", "is_test_item": false},
-      {"id": "dev_48", "question": "How does the brain coordinate behavior?", "category": "devices", "is_test_item": false}
+      {
+        "id": "dev_01",
+        "question": "How does a sewing machine work?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_02",
+        "question": "How does a flush toilet operate?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_03",
+        "question": "How does an LCD screen work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_04",
+        "question": "How does a hydroelectric turbine change water pressure into electricity?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_05",
+        "question": "How does a can opener work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_06",
+        "question": "How does a car battery store electricity?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_07",
+        "question": "How does a 35mm camera (single-lens reflex camera) make images on film?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_08",
+        "question": "How does a jet engine produce thrust?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_09",
+        "question": "How does a zipper work?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_10",
+        "question": "How does a self-winding watch run without batteries?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_11",
+        "question": "How does a cellular phone work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_12",
+        "question": "How does a microchip process information?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_13",
+        "question": "How does a greenhouse work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_14",
+        "question": "How does the U.S. Supreme Court determine the constitutionality of laws?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_15",
+        "question": "How does a fluorescent light work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_16",
+        "question": "How does a photocopier make copies?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_17",
+        "question": "How does a nuclear reactor produce electricity?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_18",
+        "question": "How does a car ignition system start the engine?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_19",
+        "question": "How does a speedometer work?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_20",
+        "question": "How does the liver remove toxins from blood?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_21",
+        "question": "How does the heart pump blood?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_22",
+        "question": "How does a car differential help the car turn?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_23",
+        "question": "How does a water faucet control water flow?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_24",
+        "question": "How do the presidential elections determine the next president?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_25",
+        "question": "How does a quartz watch keep time?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_26",
+        "question": "How does steam central heating warm large buildings?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_27",
+        "question": "How does a VCR work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_28",
+        "question": "How does a snare catch small animals?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_29",
+        "question": "How does a car's gearbox work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_30",
+        "question": "How does an incinerator work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_31",
+        "question": "How does a cylinder lock open with a key?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_32",
+        "question": "How does a television create pictures?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_33",
+        "question": "How does a helicopter fly?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_34",
+        "question": "How does a ball-point pen write?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_35",
+        "question": "How does a radio receiver work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_36",
+        "question": "How does an electric motor change electricity into movement?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_37",
+        "question": "How does a telephone transmit sound through wires?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_38",
+        "question": "How do piano keys make sounds?",
+        "category": "devices",
+        "is_test_item": true
+      },
+      {
+        "id": "dev_39",
+        "question": "How does a fireplace work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_40",
+        "question": "How does a spray-bottle spray liquids?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_41",
+        "question": "How does a solid-fuel rocket produce thrust?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_42",
+        "question": "How does a manual clutch work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_43",
+        "question": "How does an aqualung (Scuba-gear) regulate air-pressure?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_44",
+        "question": "How does an Ethernet network allow computers to share files?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_45",
+        "question": "How does a computer mouse control the pointer on a computer screen?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_46",
+        "question": "How does a transistor work?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_47",
+        "question": "How does a scanner capture images?",
+        "category": "devices",
+        "is_test_item": false
+      },
+      {
+        "id": "dev_48",
+        "question": "How does the brain coordinate behavior?",
+        "category": "devices",
+        "is_test_item": false
+      }
     ]
   },
   {
     "study": "procedures",
     "description": "10 procedures used in Study 8. Unlike devices, humans showed NO drop in self-rated knowledge after attempting to write out procedures — they were well-calibrated.",
+    "note": "Appendix B (p. 31) lists 10 items. proc_06 ('tie a bow-tie') appears as a separate entry from proc_03 ('tie a bow tie') in the two-column table; likely a distinct item or printing artifact — included here for completeness.",
     "items": [
-      {"id": "proc_01", "question": "What is the correct procedure for how to drive from New Haven to New York City?", "category": "procedures"},
-      {"id": "proc_02", "question": "What is the correct procedure for how to set a table?", "category": "procedures"},
-      {"id": "proc_03", "question": "What is the correct procedure for how to tie a bow tie?", "category": "procedures"},
-      {"id": "proc_04", "question": "What is the correct procedure for how to make pasta?", "category": "procedures"},
-      {"id": "proc_05", "question": "What is the correct procedure for how to file your taxes?", "category": "procedures"},
-      {"id": "proc_06", "question": "What is the correct procedure for how to drive from New Haven to Chicago?", "category": "procedures"},
-      {"id": "proc_07", "question": "What is the correct procedure for how to make an international telephone call?", "category": "procedures"},
-      {"id": "proc_08", "question": "What is the correct procedure for how to make scrambled eggs?", "category": "procedures"},
-      {"id": "proc_09", "question": "What is the correct procedure for how to make chocolate chip cookies from scratch?", "category": "procedures"}
+      {
+        "id": "proc_01",
+        "question": "What is the correct procedure for how to drive from New Haven to New York City?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_02",
+        "question": "What is the correct procedure for how to set a table?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_03",
+        "question": "What is the correct procedure for how to tie a bow tie?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_04",
+        "question": "What is the correct procedure for how to make pasta?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_05",
+        "question": "What is the correct procedure for how to file your taxes?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_06",
+        "question": "What is the correct procedure for how to tie a bow-tie?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_07",
+        "question": "What is the correct procedure for how to drive from New Haven to Chicago?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_08",
+        "question": "What is the correct procedure for how to make an international telephone call?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_09",
+        "question": "What is the correct procedure for how to make scrambled eggs?",
+        "category": "procedures"
+      },
+      {
+        "id": "proc_10",
+        "question": "What is the correct procedure for how to make chocolate chip cookies from scratch?",
+        "category": "procedures"
+      }
     ]
   },
   {
     "study": "natural_phenomena",
     "description": "Natural phenomena used in Study 10. Examples from paper; full list was in supplemental materials (not archived). Humans showed similarly large drops in self-rated knowledge as with devices.",
     "items": [
-      {"id": "nat_01", "question": "How do earthquakes occur?", "category": "natural_phenomena"},
-      {"id": "nat_02", "question": "Why do comets have tails?", "category": "natural_phenomena"},
-      {"id": "nat_03", "question": "How do tides occur?", "category": "natural_phenomena"},
-      {"id": "nat_04", "question": "How are rainbows formed?", "category": "natural_phenomena"}
+      {
+        "id": "nat_01",
+        "question": "How do earthquakes occur?",
+        "category": "natural_phenomena"
+      },
+      {
+        "id": "nat_02",
+        "question": "Why do comets have tails?",
+        "category": "natural_phenomena"
+      },
+      {
+        "id": "nat_03",
+        "question": "How do tides occur?",
+        "category": "natural_phenomena"
+      },
+      {
+        "id": "nat_04",
+        "question": "How are rainbows formed?",
+        "category": "natural_phenomena"
+      }
     ],
-    "note": "Only 4 of 24 items are preserved in the paper body as examples. The full list of 24 was in supplemental materials."
+    "note": "Only 4 of 24 items are preserved in the paper body as examples. The full list of 24 was in supplemental materials. Facts (Study 7, geography capitals) and Narratives (Study 9, movie plots) are also absent from this dataset for the same reason."
   }
 ]
