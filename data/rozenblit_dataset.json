@@ -2,301 +2,349 @@
   {
     "study": "devices",
     "description": "48 phenomena used in Studies 1-4. Participants rated understanding on 1-7 scale, then tried to explain step-by-step. Humans showed large drops in self-rated knowledge after attempting explanations (IOED). Test items (subset of 8) marked with 'is_test_item': true.",
-    "note": "The paper confirms 8 test items were explained between-subjects (Table 8), but the specific list was only in supplemental materials. The 'is_test_item' flags here are inferred, not confirmed from the original source.",
+    "note": "The paper confirms 8 test items were explained between-subjects (Table 8), but the specific list was only in supplemental materials. The 'is_test_item' flags here are inferred. Each item now carries a 'diagnostic_question' that probes a specific mechanism detail (Phase 4 in Rozenblit's protocol).",
     "items": [
       {
         "id": "dev_01",
         "question": "How does a sewing machine work?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "A sewing machine uses two threads. What role does the bobbin play, and how is the bottom thread brought through the fabric to interlock with the top thread on every stitch?"
       },
       {
         "id": "dev_02",
         "question": "How does a flush toilet operate?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "After you flush, what specific mechanism stops water from continuously filling the bowl, and what causes the tank to refill afterward but then stop at the correct level?"
       },
       {
         "id": "dev_03",
         "question": "How does an LCD screen work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What does an LCD pixel actually do to light to produce different intensities, and why does an LCD require a separate backlight while an OLED does not?"
       },
       {
         "id": "dev_04",
         "question": "How does a hydroelectric turbine change water pressure into electricity?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What component inside a hydroelectric generator actually produces the electrical current, and what role does the height of the dam play in how much power is generated?"
       },
       {
         "id": "dev_05",
         "question": "How does a can opener work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A manual can opener has a sharp wheel and a serrated drive wheel. What does each wheel do, and why must they be aligned the way they are to actually cut the lid free?"
       },
       {
         "id": "dev_06",
         "question": "How does a car battery store electricity?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A car battery is rechargeable. What chemical reaction occurs at the plates during discharge, and what does the alternator do to reverse it during charging?"
       },
       {
         "id": "dev_07",
         "question": "How does a 35mm camera (single-lens reflex camera) make images on film?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "In an SLR, the photographer looks through the same lens that exposes the film. What mechanism redirects light to the eye normally, and what happens to that mechanism the moment the shutter is pressed?"
       },
       {
         "id": "dev_08",
         "question": "How does a jet engine produce thrust?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A jet engine accelerates air backwards. What is the role of the turbine relative to the compressor, and where in the engine cycle does fuel actually combust?"
       },
       {
         "id": "dev_09",
         "question": "How does a zipper work?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "A zipper has two identical rows of teeth. What feature of the slider — and what shape inside it — forces the teeth to interlock when zipping up but separate when zipping down?"
       },
       {
         "id": "dev_10",
         "question": "How does a self-winding watch run without batteries?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A self-winding watch has no battery. What part inside it captures energy from the wearer's motion, and how is that stored energy released to drive the watch hands at a steady rate rather than all at once?"
       },
       {
         "id": "dev_11",
         "question": "How does a cellular phone work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why is the system called 'cellular', and what specifically happens in your phone's connection when you drive across a city while on a call?"
       },
       {
         "id": "dev_12",
         "question": "How does a microchip process information?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "At the level of a single transistor, what operation does it perform, and how do simple combinations of transistors implement logic gates such as AND or NAND?"
       },
       {
         "id": "dev_13",
         "question": "How does a greenhouse work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What does the glass do differently to incoming sunlight versus the heat radiated by warmed objects inside, and why does this asymmetry cause warming?"
       },
       {
         "id": "dev_14",
         "question": "How does the U.S. Supreme Court determine the constitutionality of laws?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What procedural path must a case take before the Supreme Court will rule on the constitutionality of a law, and what specifically must the law conflict with for it to be struck down?"
       },
       {
         "id": "dev_15",
         "question": "How does a fluorescent light work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A fluorescent tube contains gas and a phosphor coating on the glass. What does the electric current do to the gas, and what does the phosphor do with what the gas emits?"
       },
       {
         "id": "dev_16",
         "question": "How does a photocopier make copies?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A photocopier uses a charged drum and a powdered toner. Step by step, how does the image on the original end up as toner deposited on the copy, and what fixes the toner permanently to the paper?"
       },
       {
         "id": "dev_17",
         "question": "How does a nuclear reactor produce electricity?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What is the role of the moderator versus the control rods in a fission reactor, and what would happen to the chain reaction if either were fully removed?"
       },
       {
         "id": "dev_18",
         "question": "How does a car ignition system start the engine?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A car battery is 12V but a spark plug needs tens of thousands of volts. What component boosts the voltage, and what determines the timing of each spark relative to piston position?"
       },
       {
         "id": "dev_19",
         "question": "How does a speedometer work?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "In a mechanical (cable-driven) speedometer, what physical force pushes the needle, and what specifically makes the angle of deflection proportional to speed rather than to total distance travelled?"
       },
       {
         "id": "dev_20",
         "question": "How does the liver remove toxins from blood?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What is the difference between Phase I and Phase II detoxification in the liver, and why are some substances more dangerous as Phase I intermediates than as the original molecule?"
       },
       {
         "id": "dev_21",
         "question": "How does the heart pump blood?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why does the heart need atria at all rather than just ventricles, and what specifically prevents blood from flowing backwards between chambers when the ventricles contract?"
       },
       {
         "id": "dev_22",
         "question": "How does a car differential help the car turn?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "When a car turns, the outer wheel travels a longer path than the inner wheel. What specifically does the differential do to allow this while still driving both wheels, and what gear inside it makes this possible?"
       },
       {
         "id": "dev_23",
         "question": "How does a water faucet control water flow?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What component inside a typical faucet actually seals against high-pressure water, and how does turning the handle move that component without leaking around its actuator?"
       },
       {
         "id": "dev_24",
         "question": "How do the presidential elections determine the next president?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What is the actual role of an Electoral College elector, and why is it possible for a candidate to win the popular vote and still lose the presidency?"
       },
       {
         "id": "dev_25",
         "question": "How does a quartz watch keep time?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "What property of a quartz crystal makes its oscillation frequency stable, and how is the crystal's high oscillation frequency converted into one tick per second of the watch hands?"
       },
       {
         "id": "dev_26",
         "question": "How does steam central heating warm large buildings?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why is steam used rather than just hot water, and what specifically causes the steam to give up its heat at the radiators rather than somewhere else in the loop?"
       },
       {
         "id": "dev_27",
         "question": "How does a VCR work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why are VCR record/playback heads on a tilted, rotating drum rather than stationary, and what does that geometry enable that a stationary head physically cannot?"
       },
       {
         "id": "dev_28",
         "question": "How does a snare catch small animals?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What specifically holds the loop of a snare open, and what action — by the animal or by the trap mechanism itself — causes the loop to tighten and stay tight?"
       },
       {
         "id": "dev_29",
         "question": "How does a car's gearbox work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What does shifting from a lower gear to a higher gear actually change about the relationship between engine RPM and wheel RPM, and why is this useful even though the engine's own power output has not changed?"
       },
       {
         "id": "dev_30",
         "question": "How does an incinerator work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why must a modern incinerator burn waste at very high temperatures specifically, and what is done with the flue gases before they leave the smokestack?"
       },
       {
         "id": "dev_31",
         "question": "How does a cylinder lock open with a key?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "A pin tumbler cylinder lock has spring-loaded pins of different lengths split into two pieces each. What does the correct key do to those pins, and why does a key with even slightly wrong heights fail to turn the cylinder?"
       },
       {
         "id": "dev_32",
         "question": "How does a television create pictures?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "In a traditional CRT television, a single electron beam draws the entire picture. How does it cover the whole screen many times per second, and what role does the phosphor coating play between beam strikes?"
       },
       {
         "id": "dev_33",
         "question": "How does a helicopter fly?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "A spinning rotor produces lift but also reaction torque that would spin the helicopter body the other way. How is this counteracted, and how does the pilot make the helicopter move forward without simply tilting the entire aircraft?"
       },
       {
         "id": "dev_34",
         "question": "How does a ball-point pen write?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "Why is the ball necessary at all in a ballpoint pen — what would happen without it — and what stops the ink from leaking out the tip when the pen is sitting unused?"
       },
       {
         "id": "dev_35",
         "question": "How does a radio receiver work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A radio antenna picks up many stations at once. What component selects only the desired frequency, and once that signal is selected, what then extracts the audio from it?"
       },
       {
         "id": "dev_36",
         "question": "How does an electric motor change electricity into movement?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "An electric motor relies on a magnetic field. What specifically must change as the motor turns to keep it rotating rather than locking in one position, and what physical component makes that change happen automatically?"
       },
       {
         "id": "dev_37",
         "question": "How does a telephone transmit sound through wires?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "At each end of a traditional telephone connection, what device converts between sound and an electrical signal, and what physical property of that signal carries the sound information?"
       },
       {
         "id": "dev_38",
         "question": "How do piano keys make sounds?",
         "category": "devices",
-        "is_test_item": true
+        "is_test_item": true,
+        "diagnostic_question": "When you press a piano key, what is the chain of mechanical events between the key and the string? Why does loudness depend on how hard you press, and why does the note stop almost immediately when you lift your finger?"
       },
       {
         "id": "dev_39",
         "question": "How does a fireplace work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What physical principle makes smoke rise up the chimney rather than spread into the room, and why does a cold or poorly designed chimney sometimes cause smoke to enter the room instead?"
       },
       {
         "id": "dev_40",
         "question": "How does a spray-bottle spray liquids?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "When you squeeze a trigger spray bottle, how does liquid go from the reservoir, up the dip tube, and out the nozzle as a fine spray? What component prevents it from flowing backwards between squeezes?"
       },
       {
         "id": "dev_41",
         "question": "How does a solid-fuel rocket produce thrust?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A solid-fuel rocket cannot have its thrust adjusted in flight. What property of the fuel grain determines the thrust profile over time, and why is mid-burn shutdown not possible the way it is for a liquid-fuel rocket?"
       },
       {
         "id": "dev_42",
         "question": "How does a manual clutch work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What two surfaces are pressed together when a manual clutch is fully engaged, and what allows them to slip smoothly during a gear change without seizing or burning out?"
       },
       {
         "id": "dev_43",
         "question": "How does an aqualung (Scuba-gear) regulate air-pressure?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A scuba regulator must deliver air at the surrounding water pressure, not at the high tank pressure, and only when the diver inhales. What mechanism inside the regulator senses ambient pressure, and how does it open and close automatically with each breath?"
       },
       {
         "id": "dev_44",
         "question": "How does an Ethernet network allow computers to share files?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "On a shared Ethernet medium, two computers might transmit at the same time. What does the protocol do to detect or prevent this collision, and what is different about a modern switched Ethernet that largely avoids the problem?"
       },
       {
         "id": "dev_45",
         "question": "How does a computer mouse control the pointer on a computer screen?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "An optical mouse has no mechanical ball. How does it determine that the pointer should move ten pixels to the right, given only what its sensor sees of the surface beneath it?"
       },
       {
         "id": "dev_46",
         "question": "How does a transistor work?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "In an NPN bipolar transistor, what does a small current flowing into the base do to the much larger current between collector and emitter, and why is this 'transistor action' useful as either a switch or an amplifier?"
       },
       {
         "id": "dev_47",
         "question": "How does a scanner capture images?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "A flatbed scanner moves a sensor bar across the document. What does each photodiode in the sensor actually measure, and how is a colour image built from what is essentially a row of brightness measurements at each step?"
       },
       {
         "id": "dev_48",
         "question": "How does the brain coordinate behavior?",
         "category": "devices",
-        "is_test_item": false
+        "is_test_item": false,
+        "diagnostic_question": "What is the difference between an action potential within a single neuron and a synaptic signal between two neurons, and why is this two-stage signalling — electrical along the axon, chemical at the synapse — used rather than a single mechanism?"
       }
     ]
   },
   {
     "study": "procedures",
-    "description": "10 procedures used in Study 8. Unlike devices, humans showed NO drop in self-rated knowledge after attempting to write out procedures — they were well-calibrated.",
+    "description": "10 procedures used in Study 8. Unlike devices, humans showed NO drop in self-rated knowledge after attempting to write out procedures — they were well-calibrated. Rozenblit did not include a diagnostic-question phase for procedures, so this dataset does not either.",
     "note": "Appendix B (p. 31) lists 10 items. proc_06 ('tie a bow-tie') appears as a separate entry from proc_03 ('tie a bow tie') in the two-column table; likely a distinct item or printing artifact — included here for completeness.",
     "items": [
       {
@@ -353,29 +401,33 @@
   },
   {
     "study": "natural_phenomena",
-    "description": "Natural phenomena used in Study 10. Examples from paper; full list was in supplemental materials (not archived). Humans showed similarly large drops in self-rated knowledge as with devices.",
+    "description": "Natural phenomena used in Study 10. Examples from paper; full list was in supplemental materials (not archived). Humans showed similarly large drops in self-rated knowledge as with devices, and Rozenblit's protocol included a diagnostic-question phase identical to the devices studies.",
     "items": [
       {
         "id": "nat_01",
         "question": "How do earthquakes occur?",
-        "category": "natural_phenomena"
+        "category": "natural_phenomena",
+        "diagnostic_question": "Faults are under stress almost continuously. Why do they not slip continuously and smoothly, and what specifically determines whether a fault produces frequent small earthquakes or rare large ones?"
       },
       {
         "id": "nat_02",
         "question": "Why do comets have tails?",
-        "category": "natural_phenomena"
+        "category": "natural_phenomena",
+        "diagnostic_question": "A comet's tail always points roughly away from the Sun, even as the comet recedes from it — not behind the comet's direction of motion. Why away from the Sun specifically, and why does a comet sometimes display two visibly distinct tails?"
       },
       {
         "id": "nat_03",
         "question": "How do tides occur?",
-        "category": "natural_phenomena"
+        "category": "natural_phenomena",
+        "diagnostic_question": "There are two high tides per day, not one. Given that the Moon's gravity pulls the ocean toward it, why is there also a high-tide bulge on the side of Earth facing away from the Moon?"
       },
       {
         "id": "nat_04",
         "question": "How are rainbows formed?",
-        "category": "natural_phenomena"
+        "category": "natural_phenomena",
+        "diagnostic_question": "A rainbow appears as a circular arc with red on the outside and violet on the inside. What does each individual water droplet do to the light, and what determines the specific angle at which a viewer sees the arc?"
       }
     ],
-    "note": "Only 4 of 24 items are preserved in the paper body as examples. The full list of 24 was in supplemental materials. Facts (Study 7, geography capitals) and Narratives (Study 9, movie plots) are also absent from this dataset for the same reason."
+    "note": "Only 4 of 24 items are preserved in the paper body as examples. The full list of 24 was in supplemental materials. Facts (Study 7, geography capitals) and Narratives (Study 9, movie plots) are absent from this dataset for the same reason."
   }
 ]

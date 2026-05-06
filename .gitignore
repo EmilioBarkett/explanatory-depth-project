@@ -4,3 +4,7 @@ evals/core/__pycache__
 .DS_Store
 .DS_Store
 evals/rozenblit/__pycache__/eval_rozenblit.cpython-313.pyc
+evals/rozenblit/__pycache__/eval_rozenblit.cpython-310.pyc
+evals/rozenblit/__pycache__/protocol.cpython-310.pyc
+evals/rozenblit/__pycache__/protocol.cpython-313.pyc
+scripts/run_rozenblit_parallel.sh
