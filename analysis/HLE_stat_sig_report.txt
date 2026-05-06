@@ -1,0 +1,581 @@
+==================================================================================================================================
+STATISTICAL SIGNIFICANCE ANALYSIS OF HLE CONFIDENCE SHIFTS
+==================================================================================================================================
+
+Interpretation guide:
+  * p < 0.05  (marked with *  )
+  ** p < 0.01 (marked with ** )
+  *** p < 0.001 (marked with ***)
+
+Effect sizes (Cohen's dz):
+  negligible: |dz| < 0.2
+  small: 0.2 <= |dz| < 0.5
+  medium: 0.5 <= |dz| < 0.8
+  large: |dz| >= 0.8
+
+
+==================================================================================================================================
+SIGNIFICANCE SUMMARY
+==================================================================================================================================
+Group                                        n   Mean Δ             95% CI     p-value (t)        Effect size    Direction
+----------------------------------------------------------------------------------------------------------------------------------
+Overall                                   1027    1.265     [+1.05, +1.48]        0.000***      0.359 (small)    increases
+Math                                       465    1.239     [+0.91, +1.57]        0.000***      0.345 (small)    increases
+command-a                                  100    2.250     [+1.67, +2.83]        0.000***     0.770 (medium)    increases
+o3-mini                                     98    3.163     [+2.31, +4.01]        0.000***     0.747 (medium)    increases
+gpt-4o                                     100    2.170     [+1.59, +2.75]        0.000***     0.737 (medium)    increases
+Biology/Medicine                           126    2.095     [+1.38, +2.81]        0.000***     0.519 (medium)    increases
+deepseek-r1                                 61    2.475     [+1.41, +3.54]        0.000***     0.593 (medium)    increases
+Humanities/Social Science                   94    1.415     [+0.72, +2.11]        0.000***      0.418 (small)    increases
+gemini-2.0-flash-001                        93    1.398     [+0.70, +2.10]        0.000***      0.411 (small)    increases
+Engineering                                 61    1.492     [+0.72, +2.26]        0.000***      0.498 (small)    increases
+claude-opus-4                               98    1.378     [+0.53, +2.23]        0.002**       0.326 (small)    increases
+gemini-2.5-pro                              81    1.037     [+0.38, +1.70]        0.002**       0.347 (small)    increases
+Physics                                     41    1.415     [+0.50, +2.33]        0.003**       0.488 (small)    increases
+mixtral-8x22b-instruct                     100   -0.460     [-0.79, -0.13]        0.007**      -0.277 (small)    decreases
+Computer Science/AI                         91    0.747     [+0.17, +1.33]        0.012*        0.269 (small)    increases
+Other                                      118    0.729     [+0.04, +1.42]        0.038*     0.193 (negligible)    increases
+llama-3.3-70b-instruct                      97    0.732     [-0.10, +1.56]        0.082      0.178 (negligible)    increases
+grok-3                                      99    0.313     [-0.08, +0.70]        0.115      0.160 (negligible)    increases
+Chemistry                                   31    0.742     [-0.32, +1.80]        0.164         0.256 (small)    increases
+claude-3.5-haiku                           100   -0.090     [-0.79, +0.61]        0.800     -0.025 (negligible)    decreases
+
+==================================================================================================================================
+DETAILED RESULTS BY GROUP
+==================================================================================================================================
+
+Biology/Medicine
+--------------------------------------------------------------------------------
+  Sample size (n)         : 126
+  Mean delta              : +2.095
+  Median delta            : +1.000
+  Std deviation           : 4.039
+  95% Confidence interval : [+1.383, +2.807]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +5.823
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 946.0
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.519 (medium)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Chemistry
+--------------------------------------------------------------------------------
+  Sample size (n)         : 31
+  Mean delta              : +0.742
+  Median delta            : +0.000
+  Std deviation           : 2.898
+  95% Confidence interval : [-0.321, +1.805]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +1.425
+    p-value               :  0.164   
+    Result                : NOT significant at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 153.0
+    p-value (Wilcoxon)    :  0.400   
+    p-value (sign test)   :  0.701   
+
+  Effect size:
+    Cohen's dz            :   0.256 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : NO (p >= 0.05)
+
+Computer Science/AI
+--------------------------------------------------------------------------------
+  Sample size (n)         : 91
+  Mean delta              : +0.747
+  Median delta            : +1.000
+  Std deviation           : 2.779
+  95% Confidence interval : [+0.168, +1.326]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +2.565
+    p-value               :  0.012*  
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 930.0
+    p-value (Wilcoxon)    :  0.042*  
+    p-value (sign test)   :  0.009** 
+
+  Effect size:
+    Cohen's dz            :   0.269 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Engineering
+--------------------------------------------------------------------------------
+  Sample size (n)         : 61
+  Mean delta              : +1.492
+  Median delta            : +1.000
+  Std deviation           : 2.998
+  95% Confidence interval : [+0.724, +2.260]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +3.887
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 370.0
+    p-value (Wilcoxon)    :  0.001***
+    p-value (sign test)   :  0.003** 
+
+  Effect size:
+    Cohen's dz            :   0.498 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Humanities/Social Science
+--------------------------------------------------------------------------------
+  Sample size (n)         : 94
+  Mean delta              : +1.415
+  Median delta            : +1.000
+  Std deviation           : 3.384
+  95% Confidence interval : [+0.722, +2.108]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +4.054
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 768.0
+    p-value (Wilcoxon)    :  0.001***
+    p-value (sign test)   :  0.003** 
+
+  Effect size:
+    Cohen's dz            :   0.418 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Math
+--------------------------------------------------------------------------------
+  Sample size (n)         : 465
+  Mean delta              : +1.239
+  Median delta            : +1.000
+  Std deviation           : 3.593
+  95% Confidence interval : [+0.911, +1.566]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +7.435
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 25779.5
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.345 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Other
+--------------------------------------------------------------------------------
+  Sample size (n)         : 118
+  Mean delta              : +0.729
+  Median delta            : +0.000
+  Std deviation           : 3.773
+  95% Confidence interval : [+0.041, +1.417]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +2.098
+    p-value               :  0.038*  
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1950.5
+    p-value (Wilcoxon)    :  0.283   
+    p-value (sign test)   :  0.918   
+
+  Effect size:
+    Cohen's dz            :   0.193 (negligible)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Overall
+--------------------------------------------------------------------------------
+  Sample size (n)         : 1027
+  Mean delta              : +1.265
+  Median delta            : +1.000
+  Std deviation           : 3.524
+  95% Confidence interval : [+1.049, +1.481]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +11.503
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 113652.5
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.359 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+Physics
+--------------------------------------------------------------------------------
+  Sample size (n)         : 41
+  Mean delta              : +1.415
+  Median delta            : +1.000
+  Std deviation           : 2.898
+  95% Confidence interval : [+0.500, +2.329]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +3.126
+    p-value               :  0.003** 
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 99.5
+    p-value (Wilcoxon)    :  0.003** 
+    p-value (sign test)   :  0.001***
+
+  Effect size:
+    Cohen's dz            :   0.488 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+claude-3.5-haiku
+--------------------------------------------------------------------------------
+  Sample size (n)         : 100
+  Mean delta              : -0.090
+  Median delta            : -1.000
+  Std deviation           : 3.548
+  95% Confidence interval : [-0.794, +0.614]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : -0.254
+    p-value               :  0.800   
+    Result                : NOT significant at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1866.0
+    p-value (Wilcoxon)    :  0.088   
+    p-value (sign test)   :  0.032*  
+
+  Effect size:
+    Cohen's dz            :  -0.025 (negligible)
+
+  Practical interpretation:
+    Direction             : Confidence decreases
+    Significance          : NO (p >= 0.05)
+
+claude-opus-4
+--------------------------------------------------------------------------------
+  Sample size (n)         : 98
+  Mean delta              : +1.378
+  Median delta            : +1.000
+  Std deviation           : 4.232
+  95% Confidence interval : [+0.529, +2.226]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +3.223
+    p-value               :  0.002** 
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1767.5
+    p-value (Wilcoxon)    :  0.039*  
+    p-value (sign test)   :  0.261   
+
+  Effect size:
+    Cohen's dz            :   0.326 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+command-a
+--------------------------------------------------------------------------------
+  Sample size (n)         : 100
+  Mean delta              : +2.250
+  Median delta            : +1.000
+  Std deviation           : 2.921
+  95% Confidence interval : [+1.670, +2.830]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +7.703
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 359.0
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.770 (medium)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+deepseek-r1
+--------------------------------------------------------------------------------
+  Sample size (n)         : 61
+  Mean delta              : +2.475
+  Median delta            : +1.000
+  Std deviation           : 4.174
+  95% Confidence interval : [+1.406, +3.544]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +4.632
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 92.5
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.593 (medium)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+gemini-2.0-flash-001
+--------------------------------------------------------------------------------
+  Sample size (n)         : 93
+  Mean delta              : +1.398
+  Median delta            : +1.000
+  Std deviation           : 3.398
+  95% Confidence interval : [+0.698, +2.098]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +3.967
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 702.0
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.411 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+gemini-2.5-pro
+--------------------------------------------------------------------------------
+  Sample size (n)         : 81
+  Mean delta              : +1.037
+  Median delta            : +0.000
+  Std deviation           : 2.985
+  95% Confidence interval : [+0.377, +1.697]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +3.127
+    p-value               :  0.002** 
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 39.0
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.347 (small)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+gpt-4o
+--------------------------------------------------------------------------------
+  Sample size (n)         : 100
+  Mean delta              : +2.170
+  Median delta            : +2.000
+  Std deviation           : 2.944
+  95% Confidence interval : [+1.586, +2.754]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +7.371
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 422.5
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.737 (medium)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+grok-3
+--------------------------------------------------------------------------------
+  Sample size (n)         : 99
+  Mean delta              : +0.313
+  Median delta            : +1.000
+  Std deviation           : 1.957
+  95% Confidence interval : [-0.077, +0.703]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +1.592
+    p-value               :  0.115   
+    Result                : NOT significant at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1882.0
+    p-value (Wilcoxon)    :  0.284   
+    p-value (sign test)   :  0.466   
+
+  Effect size:
+    Cohen's dz            :   0.160 (negligible)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : NO (p >= 0.05)
+
+llama-3.3-70b-instruct
+--------------------------------------------------------------------------------
+  Sample size (n)         : 97
+  Mean delta              : +0.732
+  Median delta            : +0.000
+  Std deviation           : 4.104
+  95% Confidence interval : [-0.095, +1.559]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +1.757
+    p-value               :  0.082   
+    Result                : NOT significant at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1608.5
+    p-value (Wilcoxon)    :  0.192   
+    p-value (sign test)   :  0.668   
+
+  Effect size:
+    Cohen's dz            :   0.178 (negligible)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : NO (p >= 0.05)
+
+mixtral-8x22b-instruct
+--------------------------------------------------------------------------------
+  Sample size (n)         : 100
+  Mean delta              : -0.460
+  Median delta            : -1.000
+  Std deviation           : 1.660
+  95% Confidence interval : [-0.789, -0.131]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : -2.771
+    p-value               :  0.007** 
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 1411.0
+    p-value (Wilcoxon)    :  0.003** 
+    p-value (sign test)   :  0.175   
+
+  Effect size:
+    Cohen's dz            :  -0.277 (small)
+
+  Practical interpretation:
+    Direction             : Confidence decreases
+    Significance          : YES (p < 0.05)
+
+o3-mini
+--------------------------------------------------------------------------------
+  Sample size (n)         : 98
+  Mean delta              : +3.163
+  Median delta            : +1.000
+  Std deviation           : 4.237
+  95% Confidence interval : [+2.314, +4.013]
+
+  Parametric test (t-test, assumes normality):
+    t-statistic           : +7.391
+    p-value               :  0.000***
+    Result                : SIGNIFICANT at α=0.05
+
+  Non-parametric tests (distribution-free):
+    Wilcoxon W-statistic  : 124.5
+    p-value (Wilcoxon)    :  0.000***
+    p-value (sign test)   :  0.000***
+
+  Effect size:
+    Cohen's dz            :   0.747 (medium)
+
+  Practical interpretation:
+    Direction             : Confidence increases
+    Significance          : YES (p < 0.05)
+
+==================================================================================================================================
+KEY FINDINGS
+==================================================================================================================================
+
+Significant effects (p < 0.05): 16
+  • o3-mini: Δ = +3.163 (p = 0.0000, dz = 0.747)
+  • deepseek-r1: Δ = +2.475 (p = 0.0000, dz = 0.593)
+  • command-a: Δ = +2.250 (p = 0.0000, dz = 0.770)
+  • gpt-4o: Δ = +2.170 (p = 0.0000, dz = 0.737)
+  • Biology/Medicine: Δ = +2.095 (p = 0.0000, dz = 0.519)
+  • Engineering: Δ = +1.492 (p = 0.0003, dz = 0.498)
+  • Humanities/Social Science: Δ = +1.415 (p = 0.0001, dz = 0.418)
+  • Physics: Δ = +1.415 (p = 0.0033, dz = 0.488)
+  • gemini-2.0-flash-001: Δ = +1.398 (p = 0.0001, dz = 0.411)
+  • claude-opus-4: Δ = +1.378 (p = 0.0017, dz = 0.326)
+  • Overall: Δ = +1.265 (p = 0.0000, dz = 0.359)
+  • Math: Δ = +1.239 (p = 0.0000, dz = 0.345)
+  • gemini-2.5-pro: Δ = +1.037 (p = 0.0025, dz = 0.347)
+  • Computer Science/AI: Δ = +0.747 (p = 0.0120, dz = 0.269)
+  • Other: Δ = +0.729 (p = 0.0380, dz = 0.193)
+  • mixtral-8x22b-instruct: Δ = -0.460 (p = 0.0067, dz = -0.277)
+
+Top 5 largest confidence increases:
+  1. o3-mini: Δ = +3.163 ***
+  2. deepseek-r1: Δ = +2.475 ***
+  3. command-a: Δ = +2.250 ***
+  4. gpt-4o: Δ = +2.170 ***
+  5. Biology/Medicine: Δ = +2.095 ***
+
+Top 5 largest confidence decreases:
+  1. mixtral-8x22b-instruct: Δ = -0.460 **
+  2. claude-3.5-haiku: Δ = -0.090 
+  3. grok-3: Δ = +0.313 
+  4. Other: Δ = +0.729 *
+  5. llama-3.3-70b-instruct: Δ = +0.732 
