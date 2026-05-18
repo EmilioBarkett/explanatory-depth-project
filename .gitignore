@@ -1,6 +1,7 @@
 .env
 data/corr2cause_dataset.json
 evals/core/__pycache__
+evals/hle/__pycache__
 .DS_Store
 .DS_Store
 evals/rozenblit/__pycache__/eval_rozenblit.cpython-313.pyc

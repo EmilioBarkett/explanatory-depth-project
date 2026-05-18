@@ -15,7 +15,7 @@ summary tables for:
   - per-category statistics
   - model x category statistics
 
-Usage: put in the input for INPUT_FILE, OUTPUT_FILE
+Aggregates worker JSONL files from results/HLE (prefers results/HLE/new_method when present).
 """
 
 from __future__ import annotations
@@ -38,8 +38,9 @@ except ImportError:
     scipy_stats = None
 
 
-INPUT_FILE = Path(__file__).resolve().parents[2] / "results" / "new_sample_HLE.jsonl"
-OUTPUT_FILE = Path(__file__).resolve().parents[2] / "analysis" / "HLE_new_sample"
+DEFAULT_INPUT_DIR = Path(__file__).resolve().parents[2] / "results" / "HLE"
+DEFAULT_PATTERN = "hle_worker_*.jsonl"
+DEFAULT_OUTPUT_FILE = Path(__file__).resolve().parents[2] / "analysis" / "HLE_new_sample" / "analyze_hle_report.txt"
 
 REASONING_MODELS = {
     "deepseek/deepseek-r1",
@@ -82,40 +83,88 @@ class InferentialStats:
     cohens_dz: float
 
 
-def load_rows(path: Path) -> list[Row]:
+def _preferred_input_dir(input_dir: Path) -> Path:
+    nested = input_dir / "new_method"
+    return nested if nested.is_dir() else input_dir
+
+
+def discover_input_files(inputs: list[Path] | None, input_dir: Path, pattern: str) -> list[Path]:
+    files: list[Path] = []
+    if inputs:
+        for p in inputs:
+            if p.is_dir():
+                files.extend(sorted(_preferred_input_dir(p).glob(pattern)))
+            elif p.exists():
+                files.append(p)
+
+        seen: set[Path] = set()
+        out: list[Path] = []
+        for p in files:
+            rp = p.resolve()
+            if rp not in seen:
+                out.append(p)
+                seen.add(rp)
+        return out
+
+    if not input_dir.exists():
+        return []
+    return sorted(_preferred_input_dir(input_dir).glob(pattern))
+
+
+def load_rows(paths: list[Path]) -> tuple[list[Row], dict[str, int]]:
     rows: list[Row] = []
+    invalid_json = 0
+    missing_ratings = 0
 
-    with path.open(encoding="utf-8") as handle:
-        for line_no, line in enumerate(handle, start=1):
-            line = line.strip()
-            if not line:
-                continue
+    for path in paths:
+        with path.open(encoding="utf-8") as handle:
+            for line_no, line in enumerate(handle, start=1):
+                line = line.strip()
+                if not line:
+                    continue
 
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"Invalid JSON on line {line_no} of {path}: {exc}") from exc
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    invalid_json += 1
+                    continue
 
-            first_rating = record.get("first_rating") or record.get("first_confidence")
-            second_rating = record.get("second_rating") or record.get("second_confidence")
-            question_id = record.get("question_id") or record.get("id") or "unknown"
-            model = record.get("model") or "unknown"
-            category = record.get("category") or "unknown"
+                first_rating = record.get("first_rating")
+                if first_rating is None:
+                    first_rating = record.get("first_confidence")
+                second_rating = record.get("second_rating")
+                if second_rating is None:
+                    second_rating = record.get("second_confidence")
 
-            if first_rating is None or second_rating is None:
-                continue
+                if first_rating is None or second_rating is None:
+                    missing_ratings += 1
+                    continue
 
-            rows.append(
-                Row(
-                    question_id=str(question_id),
-                    model=str(model),
-                    category=str(category),
-                    first_rating=int(first_rating),
-                    second_rating=int(second_rating),
-                )
-            )
+                question_id = record.get("question_id") or record.get("id") or "unknown"
+                model = record.get("model") or "unknown"
+                category = record.get("category") or "unknown"
 
-    return rows
+                try:
+                    rows.append(
+                        Row(
+                            question_id=str(question_id),
+                            model=str(model),
+                            category=str(category),
+                            first_rating=int(first_rating),
+                            second_rating=int(second_rating),
+                        )
+                    )
+                except (TypeError, ValueError):
+                    missing_ratings += 1
+                    continue
+
+    diagnostics = {
+        "input_files": len(paths),
+        "loaded_rows": len(rows),
+        "invalid_json": invalid_json,
+        "missing_ratings": missing_ratings,
+    }
+    return rows, diagnostics
 
 
 def _sample_std(values: list[float]) -> float:
@@ -457,22 +506,41 @@ def print_extremes(rows: list[Row], limit: int = 10) -> None:
 
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Analyze HLE first/second rating deltas.")
-    parser.add_argument("--input", type=Path, default=INPUT_FILE, help="Path to HLE_results.jsonl")
-    parser.add_argument("--output", type=Path, default=OUTPUT_FILE, help="Path to write the text report")
+    parser.add_argument(
+        "--inputs",
+        type=Path,
+        nargs="*",
+        default=None,
+        help="Explicit JSONL file(s) and/or directories. If omitted, uses --input-dir + --pattern.",
+    )
+    parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR, help="Directory containing worker JSONL files")
+    parser.add_argument("--pattern", type=str, default=DEFAULT_PATTERN, help="Glob pattern used under --input-dir")
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_FILE, help="Path to write the text report")
     parser.add_argument("--top-n", type=int, default=10, help="How many extreme rows to show")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    rows = load_rows(args.input)
+    input_files = discover_input_files(args.inputs, args.input_dir, args.pattern)
+    if not input_files:
+        raise SystemExit("No input files found. Check --inputs or --input-dir/--pattern.")
+
+    rows, diagnostics = load_rows(input_files)
 
     if not rows:
-        raise SystemExit(f"No usable rows found in {args.input}")
+        raise SystemExit("No usable rows found in selected inputs.")
 
     buffer = io.StringIO()
     with redirect_stdout(buffer):
-        # print(f"Loaded {len(rows)} scored rows from {args.input}")
+        print(f"Input files loaded   : {diagnostics['input_files']}")
+        print(f"Scored rows loaded   : {diagnostics['loaded_rows']}")
+        print(f"Rows missing ratings : {diagnostics['missing_ratings']}")
+        print(f"Invalid JSON rows    : {diagnostics['invalid_json']}")
+        print("Input files:")
+        for p in input_files:
+            print(f"  - {p}")
+
         if scipy_stats is None:
             print("Warning: scipy not installed; t-test uses normal approximation and Wilcoxon p-values are unavailable.")
         print_overall(rows)

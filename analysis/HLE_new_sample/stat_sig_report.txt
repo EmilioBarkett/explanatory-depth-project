@@ -1,0 +1,166 @@
+============================================================================================================================================
+STATISTICAL SIGNIFICANCE ANALYSIS OF HLE CONFIDENCE SHIFTS
+============================================================================================================================================
+Input files loaded    : 11
+Scored rows loaded    : 6081
+Rows with error field : 1062
+Rows missing ratings  : 1069
+Invalid JSON rows     : 0
+
+Input files:
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_anthropic_claude-3.5-haiku.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_anthropic_claude-opus-4.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_cohere_command-a.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_deepseek_deepseek-r1.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_google_gemini-2.0-flash-001.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_google_gemini-2.5-pro.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_meta-llama_llama-3.3-70b-instruct.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_mistralai_mixtral-8x22b-instruct.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_openai_gpt-4o.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_openai_o3-mini.jsonl
+  - /Users/hayziechu/Desktop/explanatory-depth-project/results/HLE/new_method/hle_worker_x-ai_grok-3.jsonl
+
+Interpretation guide:
+  * p < 0.05  (marked with *  )
+  ** p < 0.01 (marked with ** )
+  *** p < 0.001 (marked with ***)
+
+============================================================================================================================================
+SIGNIFICANCE SUMMARY
+============================================================================================================================================
+Group                                             n   qids   Mean Δ             95% CI     p-value (t)        Effect size    Direction
+--------------------------------------------------------------------------------------------------------------------------------------------
+Overall                                        6081     65    0.692     [+0.65, +0.74]        0.000***      0.371 (small)    increases
+Model: gpt-4o                                   649     65    0.982     [+0.91, +1.05]        0.000***      1.052 (large)    increases
+Model: mixtral-8x22b-instruct                   650     65    1.520     [+1.36, +1.68]        0.000***     0.743 (medium)    increases
+Model×Category: gpt-4o || Math                  299     30    0.960     [+0.87, +1.05]        0.000***      1.161 (large)    increases
+Category: Math                                 2812     30    0.479     [+0.42, +0.54]        0.000***      0.301 (small)    increases
+Model: gemini-2.0-flash-001                     536     54    1.826     [+1.58, +2.07]        0.000***     0.636 (medium)    increases
+Model×Category: mixtral-8x22b-instruct || Math    300     30    1.680     [+1.44, +1.92]        0.000***     0.796 (medium)    increases
+Category: Computer Science/AI                   678      7    0.637     [+0.54, +0.74]        0.000***      0.484 (small)    increases
+Category: Humanities/Social Science             471      5    0.752     [+0.63, +0.87]        0.000***     0.556 (medium)    increases
+Model×Category: gemini-2.0-flash-001 || Math    259     26    1.185     [+1.00, +1.37]        0.000***     0.788 (medium)    increases
+Model: command-a                                646     65    0.748     [+0.62, +0.87]        0.000***      0.461 (small)    increases
+Category: Biology/Medicine                      551      6    1.479     [+1.23, +1.73]        0.000***      0.499 (small)    increases
+Category: Other                                 880      9    0.875     [+0.72, +1.03]        0.000***      0.384 (small)    increases
+Model×Category: gpt-4o || Computer Science/AI     70      7    1.143     [+0.96, +1.32]        0.000***      1.529 (large)    increases
+Model: deepseek-r1                              386     51    1.013     [+0.81, +1.22]        0.000***      0.489 (small)    increases
+Model: gemini-2.5-pro                           403     48    0.692     [+0.54, +0.84]        0.000***      0.448 (small)    increases
+Model×Category: llama-3.3-70b-instruct || Humanities/Social Science     25      4    1.840     [+1.64, +2.04]        0.000***      3.894 (large)    increases
+Category: Engineering                           347      4    0.594     [+0.46, +0.73]        0.000***      0.458 (small)    increases
+Model: grok-3                                   641     65    0.236     [+0.18, +0.29]        0.000***      0.321 (small)    increases
+Model×Category: gpt-4o || Humanities/Social Science     50      5    1.240     [+1.01, +1.47]        0.000***      1.508 (large)    increases
+Model×Category: gpt-4o || Engineering            40      4    1.000     [+0.82, +1.18]        0.000***      1.803 (large)    increases
+Model×Category: mixtral-8x22b-instruct || Other     90      9    1.667     [+1.27, +2.06]        0.000***      0.887 (large)    increases
+Model×Category: gemini-2.0-flash-001 || Computer Science/AI     70      7    1.171     [+0.88, +1.46]        0.000***      0.973 (large)    increases
+Model×Category: command-a || Math               297     30    0.529     [+0.38, +0.68]        0.000***      0.406 (small)    increases
+Model×Category: gpt-4o || Other                  90      9    0.733     [+0.54, +0.92]        0.000***      0.806 (large)    increases
+Model×Category: claude-3.5-haiku || Math        298     30   -0.490     [-0.63, -0.35]        0.000***     -0.396 (small)    decreases
+Model×Category: gemini-2.0-flash-001 || Other     80      8    3.625     [+2.64, +4.61]        0.000***      0.816 (large)    increases
+Model: llama-3.3-70b-instruct                   325     53    0.809     [+0.57, +1.05]        0.000***      0.363 (small)    increases
+Model×Category: command-a || Computer Science/AI     70      7    0.729     [+0.53, +0.93]        0.000***      0.875 (large)    increases
+Category: Physics                               262      3    0.905     [+0.63, +1.18]        0.000***      0.396 (small)    increases
+Model: o3-mini                                  629     65    0.426     [+0.29, +0.57]        0.000***      0.237 (small)    increases
+Model×Category: claude-opus-4 || Math           279     28   -0.505     [-0.68, -0.33]        0.000***     -0.335 (small)    decreases
+Model×Category: mixtral-8x22b-instruct || Computer Science/AI     70      7    1.300     [+0.87, +1.73]        0.000***     0.727 (medium)    increases
+Model×Category: gpt-4o || Physics                30      3    0.800     [+0.57, +1.03]        0.000***      1.311 (large)    increases
+Model×Category: grok-3 || Math                  295     30    0.183     [+0.12, +0.25]        0.000***      0.317 (small)    increases
+Model×Category: deepseek-r1 || Computer Science/AI     51      6    1.039     [+0.67, +1.40]        0.000***      0.802 (large)    increases
+Model×Category: deepseek-r1 || Other             67      8    1.119     [+0.71, +1.53]        0.000***     0.665 (medium)    increases
+Model×Category: gemini-2.5-pro || Math          181     22    0.409     [+0.25, +0.57]        0.000***      0.370 (small)    increases
+Model×Category: gpt-4o || Biology/Medicine       60      6    1.150     [+0.70, +1.60]        0.000***     0.663 (medium)    increases
+Model×Category: grok-3 || Computer Science/AI     68      7    0.265     [+0.16, +0.37]        0.000***     0.596 (medium)    increases
+Model×Category: command-a || Humanities/Social Science     49      5    0.735     [+0.44, +1.03]        0.000***     0.723 (medium)    increases
+Model×Category: gpt-4o || Chemistry              10      1    0.900     [+0.67, +1.13]        0.000***      2.846 (large)    increases
+Model×Category: deepseek-r1 || Biology/Medicine     42      5    2.786     [+1.59, +3.98]        0.000***     0.728 (medium)    increases
+Model×Category: gemini-2.5-pro || Other          55      6    1.036     [+0.58, +1.49]        0.000***     0.614 (medium)    increases
+Model×Category: command-a || Physics             30      3    0.700     [+0.40, +1.00]        0.000***      0.881 (large)    increases
+Model×Category: mixtral-8x22b-instruct || Humanities/Social Science     50      5    1.160     [+0.64, +1.68]        0.000***     0.637 (medium)    increases
+Category: Chemistry                              80      1    0.600     [+0.32, +0.88]        0.000***      0.477 (small)    increases
+Model×Category: command-a || Biology/Medicine     60      6    1.767     [+0.95, +2.59]        0.000***     0.557 (medium)    increases
+Model×Category: gemini-2.0-flash-001 || Physics     18      2    5.778     [+3.40, +8.15]        0.000***      1.211 (large)    increases
+Model×Category: command-a || Other               90      9    0.867     [+0.45, +1.28]        0.000***      0.434 (small)    increases
+Model×Category: mixtral-8x22b-instruct || Engineering     40      4    1.150     [+0.61, +1.69]        0.000***     0.675 (medium)    increases
+Model×Category: grok-3 || Humanities/Social Science     48      5    0.271     [+0.14, +0.40]        0.000***     0.603 (medium)    increases
+Model×Category: mixtral-8x22b-instruct || Biology/Medicine     60      6    1.233     [+0.63, +1.84]        0.000***     0.529 (medium)    increases
+Model×Category: gemini-2.0-flash-001 || Biology/Medicine     40      4    2.950     [+1.52, +4.38]        0.000***     0.659 (medium)    increases
+Model×Category: o3-mini || Math                 294     30    0.384     [+0.19, +0.58]        0.000***      0.222 (small)    increases
+Model×Category: mixtral-8x22b-instruct || Physics     30      3    2.000     [+1.05, +2.95]        0.000***     0.786 (medium)    increases
+Model: claude-3.5-haiku                         646     65   -0.211     [-0.32, -0.10]        0.000***  -0.145 (negligible)    decreases
+Model×Category: grok-3 || Engineering            40      4    0.275     [+0.13, +0.42]        0.000***     0.608 (medium)    increases
+Model×Category: gemini-2.0-flash-001 || Humanities/Social Science     49      5    1.061     [+0.49, +1.63]        0.000***     0.538 (medium)    increases
+Model×Category: command-a || Engineering         40      4    0.675     [+0.31, +1.04]        0.001***     0.592 (medium)    increases
+Model×Category: gemini-2.5-pro || Engineering     29      3    0.931     [+0.42, +1.44]        0.001***     0.698 (medium)    increases
+Model×Category: claude-3.5-haiku || Biology/Medicine     60      6    1.167     [+0.50, +1.83]        0.001***      0.455 (small)    increases
+Model×Category: o3-mini || Biology/Medicine      60      6    1.567     [+0.66, +2.47]        0.001**       0.446 (small)    increases
+Model×Category: gemini-2.5-pro || Computer Science/AI     50      6    0.660     [+0.28, +1.04]        0.001**       0.489 (small)    increases
+Model×Category: deepseek-r1 || Engineering       22      3    1.318     [+0.59, +2.05]        0.001**       0.802 (large)    increases
+Model×Category: llama-3.3-70b-instruct || Math    159     25    0.522     [+0.21, +0.84]        0.001**       0.261 (small)    increases
+Model×Category: claude-3.5-haiku || Physics      30      3   -0.633     [-1.01, -0.26]        0.002**     -0.634 (medium)    decreases
+Model×Category: deepseek-r1 || Humanities/Social Science     39      4    0.897     [+0.36, +1.44]        0.002**      0.538 (medium)    increases
+Model×Category: claude-3.5-haiku || Other        89      9   -0.360     [-0.59, -0.13]        0.002**      -0.333 (small)    decreases
+Model×Category: gemini-2.0-flash-001 || Engineering     20      2    1.300     [+0.51, +2.09]        0.003**      0.770 (medium)    increases
+Model×Category: deepseek-r1 || Math             151     22    0.358     [+0.12, +0.60]        0.004**       0.238 (small)    increases
+Model×Category: grok-3 || Biology/Medicine       60      6    0.633     [+0.21, +1.06]        0.004**       0.382 (small)    increases
+Model×Category: grok-3 || Other                  90      9    0.178     [+0.05, +0.30]        0.005**       0.300 (small)    increases
+Model×Category: llama-3.3-70b-instruct || Computer Science/AI     33      5    1.121     [+0.35, +1.89]        0.006**      0.515 (medium)    increases
+Model×Category: o3-mini || Other                 89      9    0.551     [+0.16, +0.94]        0.006**       0.299 (small)    increases
+Model×Category: gemini-2.5-pro || Biology/Medicine     39      4    1.359     [+0.38, +2.34]        0.008**       0.451 (small)    increases
+Model×Category: claude-opus-4 || Biology/Medicine     46      5    0.870     [+0.22, +1.52]        0.010*        0.396 (small)    increases
+Model×Category: gemini-2.5-pro || Physics        24      3    0.833     [+0.21, +1.45]        0.010*       0.569 (medium)    increases
+Model: claude-opus-4                            570     59   -0.167     [-0.30, -0.04]        0.011*    -0.107 (negligible)    decreases
+Model×Category: gemini-2.5-pro || Humanities/Social Science     17      3    0.471     [+0.10, +0.84]        0.016*       0.656 (medium)    increases
+Model×Category: gemini-2.5-pro || Chemistry       8      1    0.875     [+0.18, +1.57]        0.021*        1.049 (large)    increases
+Model×Category: claude-opus-4 || Humanities/Social Science     47      5    0.511     [+0.07, +0.95]        0.023*        0.343 (small)    increases
+Model×Category: command-a || Chemistry           10      1    0.700     [+0.11, +1.29]        0.025*        0.850 (large)    increases
+Model×Category: claude-3.5-haiku || Engineering     40      4   -0.325     [-0.64, -0.01]        0.041*       -0.335 (small)    decreases
+Model×Category: llama-3.3-70b-instruct || Biology/Medicine     24      5    1.500     [+0.04, +2.96]        0.045*        0.433 (small)    increases
+Model×Category: deepseek-r1 || Chemistry          5      1    3.000     [+0.09, +5.91]        0.046*        1.279 (large)    increases
+Model×Category: o3-mini || Humanities/Social Science     48      5    0.208     [+0.00, +0.42]        0.049*        0.292 (small)    increases
+Model×Category: llama-3.3-70b-instruct || Other     58      7    0.672     [-0.02, +1.37]        0.058         0.254 (small)    increases
+Model×Category: llama-3.3-70b-instruct || Physics     12      3    0.833     [-0.06, +1.73]        0.064        0.594 (medium)    increases
+Model×Category: deepseek-r1 || Physics            9      2    1.444     [-0.19, +3.08]        0.076        0.679 (medium)    increases
+Model×Category: claude-opus-4 || Other           82      9   -0.220     [-0.51, +0.07]        0.134     -0.167 (negligible)    decreases
+Model×Category: claude-3.5-haiku || Chemistry     10      1    0.600     [-0.30, +1.50]        0.168         0.474 (small)    increases
+Model×Category: llama-3.3-70b-instruct || Engineering     13      3    0.846     [-0.55, +2.24]        0.210         0.367 (small)    increases
+Model×Category: claude-3.5-haiku || Computer Science/AI     70      7   -0.171     [-0.47, +0.12]        0.251     -0.138 (negligible)    decreases
+Model×Category: claude-3.5-haiku || Humanities/Social Science     49      5    0.204     [-0.15, +0.56]        0.255      0.164 (negligible)    increases
+Model×Category: o3-mini || Computer Science/AI     69      7    0.014     [-0.01, +0.04]        0.321      0.120 (negligible)    increases
+Model×Category: mixtral-8x22b-instruct || Chemistry     10      1    0.500     [-0.58, +1.58]        0.322         0.331 (small)    increases
+Model×Category: o3-mini || Physics               29      3    0.034     [-0.04, +0.11]        0.326      0.186 (negligible)    increases
+Model×Category: claude-opus-4 || Chemistry        9      1   -0.222     [-1.15, +0.70]        0.594     -0.185 (negligible)    decreases
+Model×Category: claude-opus-4 || Physics         20      2    0.100     [-0.30, +0.50]        0.606      0.117 (negligible)    increases
+Model×Category: claude-opus-4 || Engineering     30      3    0.067     [-0.34, +0.47]        0.738      0.062 (negligible)    increases
+Model×Category: grok-3 || Physics                30      3    0.033     [-0.17, +0.24]        0.745      0.060 (negligible)    increases
+Model×Category: claude-opus-4 || Computer Science/AI     57      6   -0.035     [-0.44, +0.37]        0.863     -0.023 (negligible)    decreases
+Model×Category: grok-3 || Chemistry              10      1    0.000     [-0.34, +0.34]        1.000      0.000 (negligible)    no change
+Model×Category: llama-3.3-70b-instruct || Chemistry      1      1    1.000       [+nan, +nan]             nan                nan    increases
+Model×Category: o3-mini || Chemistry              7      1    0.000     [+0.00, +0.00]             nan                nan    no change
+Model×Category: o3-mini || Engineering           33      4    0.000     [+0.00, +0.00]             nan                nan    no change
+
+============================================================================================================================================
+SIGNIFICANT FINDINGS
+============================================================================================================================================
+Eligible groups (n >= 20): 92
+Significant groups (p_t < 0.05): 81
+
+Top significant decreases (most negative mean delta):
+  - Model×Category: claude-3.5-haiku || Physics: n=30, qids=3, Δ=-0.633, p=0.001645, dz=-0.634
+  - Model×Category: claude-opus-4 || Math: n=279, qids=28, Δ=-0.505, p=5.394e-08, dz=-0.335
+  - Model×Category: claude-3.5-haiku || Math: n=298, qids=30, Δ=-0.490, p=4.6e-11, dz=-0.396
+  - Model×Category: claude-3.5-haiku || Other: n=89, qids=9, Δ=-0.360, p=0.002279, dz=-0.333
+  - Model×Category: claude-3.5-haiku || Engineering: n=40, qids=4, Δ=-0.325, p=0.04071, dz=-0.335
+  - Model: claude-3.5-haiku: n=646, qids=65, Δ=-0.211, p=0.000255, dz=-0.145
+  - Model: claude-opus-4: n=570, qids=59, Δ=-0.167, p=0.01114, dz=-0.107
+
+Top significant increases (most positive mean delta):
+  - Model×Category: gemini-2.0-flash-001 || Other: n=80, qids=8, Δ=+3.625, p=2.032e-10, dz=0.816
+  - Model×Category: gemini-2.0-flash-001 || Biology/Medicine: n=40, qids=4, Δ=+2.950, p=0.0001657, dz=0.659
+  - Model×Category: deepseek-r1 || Biology/Medicine: n=42, qids=5, Δ=+2.786, p=2.791e-05, dz=0.728
+  - Model×Category: mixtral-8x22b-instruct || Physics: n=30, qids=3, Δ=+2.000, p=0.0001751, dz=0.786
+  - Model×Category: llama-3.3-70b-instruct || Humanities/Social Science: n=25, qids=4, Δ=+1.840, p=3.301e-16, dz=3.894
+  - Model: gemini-2.0-flash-001: n=536, qids=54, Δ=+1.826, p=1.996e-41, dz=0.636
+  - Model×Category: command-a || Biology/Medicine: n=60, qids=6, Δ=+1.767, p=6.121e-05, dz=0.557
+  - Model×Category: mixtral-8x22b-instruct || Math: n=300, qids=30, Δ=+1.680, p=8.041e-34, dz=0.796
+  - Model×Category: mixtral-8x22b-instruct || Other: n=90, qids=9, Δ=+1.667, p=6.003e-13, dz=0.887
+  - Model×Category: o3-mini || Biology/Medicine: n=60, qids=6, Δ=+1.567, p=0.001017, dz=0.446

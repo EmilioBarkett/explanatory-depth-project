@@ -1,12 +1,9 @@
 """Statistical significance analysis for HLE confidence-shift results.
 
-Analyzes whether observed confidence shifts (deltas) are statistically significant
-using multiple statistical tests: t-test, Wilcoxon signed-rank, sign test, and
-effect sizes (Cohen's dz).
+Aggregates worker JSONL files and tests whether deltas (R2 - R1) differ from 0
+for overall data, per-model groups, per-category groups, and model x category.
 
-Usage:
-  python evals/hle/stat_sig.py
-  python evals/hle/stat_sig.py --input results/new_sample_HLE.jsonl --output analysis/stat_sig_report.txt
+Includes explicit group sizes so uneven sample counts are visible.
 """
 
 from __future__ import annotations
@@ -21,7 +18,7 @@ from contextlib import redirect_stdout
 from dataclasses import dataclass
 from pathlib import Path
 from statistics import NormalDist
-from typing import Any, Callable
+from typing import Callable
 
 try:
     from scipy import stats as scipy_stats
@@ -29,14 +26,14 @@ except ImportError:
     scipy_stats = None
 
 
-INPUT_FILE = Path(__file__).resolve().parents[2] / "results" / "new_sample_HLE.jsonl"
-OUTPUT_FILE = Path(__file__).resolve().parents[2] / "analysis" / "stat_sig_report.txt"
+DEFAULT_INPUT_DIR = Path(__file__).resolve().parents[2] / "results" / "HLE"
+DEFAULT_PATTERN = "hle_worker_*.jsonl"
+DEFAULT_OUTPUT = Path(__file__).resolve().parents[2] / "analysis" / "HLE_new_sample" / "stat_sig_report.txt"
 
 
 @dataclass(frozen=True)
 class Row:
-    """Normalized view of one JSONL entry."""
-
+    source_file: str
     question_id: str
     model: str
     category: str
@@ -50,10 +47,9 @@ class Row:
 
 @dataclass(frozen=True)
 class SignificanceResult:
-    """Result of a statistical significance test."""
-
     group_name: str
     n: int
+    n_questions: int
     mean_delta: float
     median_delta: float
     std_delta: float
@@ -65,43 +61,95 @@ class SignificanceResult:
     cohens_dz: float
     ci_low: float
     ci_high: float
-    direction: str  # "increases", "decreases", or "no change"
+    direction: str
 
 
-def load_rows(path: Path) -> list[Row]:
+def display_model_name(model: str) -> str:
+    return model.split("/", 1)[1] if "/" in model else model
+
+
+def _preferred_input_dir(input_dir: Path) -> Path:
+    nested = input_dir / "new_method"
+    return nested if nested.is_dir() else input_dir
+
+
+def discover_input_files(inputs: list[Path] | None, input_dir: Path, pattern: str) -> list[Path]:
+    files: list[Path] = []
+    if inputs:
+        for p in inputs:
+            if p.is_dir():
+                files.extend(sorted(_preferred_input_dir(p).glob(pattern)))
+            elif p.exists():
+                files.append(p)
+        seen: set[Path] = set()
+        out: list[Path] = []
+        for p in files:
+            rp = p.resolve()
+            if rp not in seen:
+                out.append(p)
+                seen.add(rp)
+        return out
+
+    if not input_dir.exists():
+        return []
+    return sorted(_preferred_input_dir(input_dir).glob(pattern))
+
+
+def load_rows(paths: list[Path]) -> tuple[list[Row], dict[str, int]]:
     rows: list[Row] = []
+    invalid_json = 0
+    missing_ratings = 0
+    errored_rows = 0
 
-    with path.open(encoding="utf-8") as handle:
-        for line_no, line in enumerate(handle, start=1):
-            line = line.strip()
-            if not line:
-                continue
+    for path in paths:
+        with path.open(encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    invalid_json += 1
+                    continue
 
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"Invalid JSON on line {line_no} of {path}: {exc}") from exc
+                if record.get("error"):
+                    errored_rows += 1
 
-            first_rating = record.get("first_rating") or record.get("first_confidence")
-            second_rating = record.get("second_rating") or record.get("second_confidence")
-            question_id = record.get("question_id") or record.get("id") or "unknown"
-            model = record.get("model") or "unknown"
-            category = record.get("category") or "unknown"
+                first_rating = record.get("first_rating")
+                if first_rating is None:
+                    first_rating = record.get("first_confidence")
+                second_rating = record.get("second_rating")
+                if second_rating is None:
+                    second_rating = record.get("second_confidence")
 
-            if first_rating is None or second_rating is None:
-                continue
+                if first_rating is None or second_rating is None:
+                    missing_ratings += 1
+                    continue
 
-            rows.append(
-                Row(
-                    question_id=str(question_id),
-                    model=str(model),
-                    category=str(category),
-                    first_rating=int(first_rating),
-                    second_rating=int(second_rating),
-                )
-            )
+                try:
+                    row = Row(
+                        source_file=path.name,
+                        question_id=str(record.get("question_id") or record.get("id") or "unknown"),
+                        model=str(record.get("model") or "unknown"),
+                        category=str(record.get("category") or "unknown"),
+                        first_rating=int(first_rating),
+                        second_rating=int(second_rating),
+                    )
+                except (TypeError, ValueError):
+                    missing_ratings += 1
+                    continue
 
-    return rows
+                rows.append(row)
+
+    diagnostics = {
+        "input_files": len(paths),
+        "loaded_rows": len(rows),
+        "invalid_json": invalid_json,
+        "missing_ratings": missing_ratings,
+        "errored_rows": errored_rows,
+    }
+    return rows, diagnostics
 
 
 def _sample_std(values: list[float]) -> float:
@@ -179,13 +227,13 @@ def _cohens_dz(values: list[float]) -> float:
 
 
 def test_significance(rows: list[Row], group_name: str = "Overall") -> SignificanceResult:
-    """Run all significance tests on a group of rows."""
     deltas = [float(row.delta) for row in rows]
-    
+
     if not deltas:
         return SignificanceResult(
             group_name=group_name,
             n=0,
+            n_questions=0,
             mean_delta=float("nan"),
             median_delta=float("nan"),
             std_delta=float("nan"),
@@ -209,7 +257,6 @@ def test_significance(rows: list[Row], group_name: str = "Overall") -> Significa
     p_sign = _two_sided_sign_test_p(deltas)
     cohens_dz = _cohens_dz(deltas)
 
-    # Determine direction
     if mean_delta > 0:
         direction = "increases"
     elif mean_delta < 0:
@@ -220,6 +267,7 @@ def test_significance(rows: list[Row], group_name: str = "Overall") -> Significa
     return SignificanceResult(
         group_name=group_name,
         n=len(deltas),
+        n_questions=len({row.question_id for row in rows}),
         mean_delta=mean_delta,
         median_delta=median_delta,
         std_delta=std_delta,
@@ -235,16 +283,14 @@ def test_significance(rows: list[Row], group_name: str = "Overall") -> Significa
     )
 
 
-def group_rows(rows: list[Row], key_fn: Callable[[Row], Any]) -> dict[Any, list[Row]]:
-    """Group rows by a key function."""
-    groups: defaultdict[Any, list[Row]] = defaultdict(list)
+def group_rows(rows: list[Row], key_fn: Callable[[Row], str]) -> dict[str, list[Row]]:
+    groups: defaultdict[str, list[Row]] = defaultdict(list)
     for row in rows:
         groups[key_fn(row)].append(row)
     return groups
 
 
-def format_p(value: float, threshold: float = 0.05) -> str:
-    """Format p-value with significance marker."""
+def format_p(value: float) -> str:
     if math.isnan(value):
         return "    nan"
     if value < 0.001:
@@ -259,7 +305,6 @@ def format_p(value: float, threshold: float = 0.05) -> str:
 
 
 def format_effect(value: float) -> str:
-    """Format Cohen's dz with interpretation."""
     if math.isnan(value):
         return "   nan"
     abs_val = abs(value)
@@ -274,149 +319,141 @@ def format_effect(value: float) -> str:
     return f"{value:7.3f} {interpretation}"
 
 
-def print_header() -> None:
-    print("=" * 130)
+def print_header(input_files: list[Path], diagnostics: dict[str, int]) -> None:
+    print("=" * 140)
     print("STATISTICAL SIGNIFICANCE ANALYSIS OF HLE CONFIDENCE SHIFTS")
-    print("=" * 130)
+    print("=" * 140)
+    print(f"Input files loaded    : {diagnostics['input_files']}")
+    print(f"Scored rows loaded    : {diagnostics['loaded_rows']}")
+    print(f"Rows with error field : {diagnostics['errored_rows']}")
+    print(f"Rows missing ratings  : {diagnostics['missing_ratings']}")
+    print(f"Invalid JSON rows     : {diagnostics['invalid_json']}")
+    if scipy_stats is None:
+        print("Warning: scipy not installed; Wilcoxon p-values unavailable, t-test fallback uses normal approximation.")
+
+    print("\nInput files:")
+    for p in input_files:
+        print(f"  - {p}")
+
     print("\nInterpretation guide:")
     print("  * p < 0.05  (marked with *  )")
     print("  ** p < 0.01 (marked with ** )")
     print("  *** p < 0.001 (marked with ***)")
-    print("\nEffect sizes (Cohen's dz):")
-    print("  negligible: |dz| < 0.2")
-    print("  small: 0.2 <= |dz| < 0.5")
-    print("  medium: 0.5 <= |dz| < 0.8")
-    print("  large: |dz| >= 0.8")
-    print()
 
 
 def print_significance_summary(results: list[SignificanceResult]) -> None:
-    """Print a summary table of significance results."""
-    print("\n" + "=" * 130)
+    print("\n" + "=" * 140)
     print("SIGNIFICANCE SUMMARY")
-    print("=" * 130)
+    print("=" * 140)
     print(
-        f"{'Group':<40} {'n':>5} {'Mean Δ':>8} {'95% CI':>18} {'p-value (t)':>15} {'Effect size':>18} {'Direction':>12}"
+        f"{'Group':<44} {'n':>6} {'qids':>6} {'Mean Δ':>8} {'95% CI':>18} {'p-value (t)':>15} {'Effect size':>18} {'Direction':>12}"
     )
-    print("-" * 130)
+    print("-" * 140)
 
     for result in sorted(results, key=lambda r: r.p_t if not math.isnan(r.p_t) else 1.0):
         ci_str = f"[{result.ci_low:+.2f}, {result.ci_high:+.2f}]"
         effect_str = format_effect(result.cohens_dz)
         print(
-            f"{result.group_name:<40} {result.n:>5} {result.mean_delta:>8.3f} {ci_str:>18} "
+            f"{result.group_name:<44} {result.n:>6} {result.n_questions:>6} {result.mean_delta:>8.3f} {ci_str:>18} "
             f"{format_p(result.p_t):>15} {effect_str:>18} {result.direction:>12}"
         )
 
 
-def print_detailed_results(results: list[SignificanceResult]) -> None:
-    """Print detailed statistics for each group."""
-    print("\n" + "=" * 130)
-    print("DETAILED RESULTS BY GROUP")
-    print("=" * 130)
+def print_significant_findings(results: list[SignificanceResult], min_n: int) -> None:
+    print("\n" + "=" * 140)
+    print("SIGNIFICANT FINDINGS")
+    print("=" * 140)
 
-    for result in sorted(results, key=lambda r: r.group_name):
-        print(f"\n{result.group_name}")
-        print("-" * 80)
-        print(f"  Sample size (n)         : {result.n}")
-        print(f"  Mean delta              : {result.mean_delta:+.3f}")
-        print(f"  Median delta            : {result.median_delta:+.3f}")
-        print(f"  Std deviation           : {result.std_delta:.3f}")
-        print(f"  95% Confidence interval : [{result.ci_low:+.3f}, {result.ci_high:+.3f}]")
-        print(f"\n  Parametric test (t-test, assumes normality):")
-        print(f"    t-statistic           : {result.t_stat:+.3f}")
-        print(f"    p-value               : {format_p(result.p_t)}")
-        if result.p_t < 0.05:
-            print(f"    Result                : SIGNIFICANT at α=0.05")
-        else:
-            print(f"    Result                : NOT significant at α=0.05")
+    eligible = [r for r in results if r.n >= min_n]
+    significant = [r for r in eligible if not math.isnan(r.p_t) and r.p_t < 0.05]
 
-        print(f"\n  Non-parametric tests (distribution-free):")
-        print(f"    Wilcoxon W-statistic  : {result.wilcoxon_stat:.1f}")
-        print(f"    p-value (Wilcoxon)    : {format_p(result.p_wilcoxon)}")
-        print(f"    p-value (sign test)   : {format_p(result.p_sign)}")
+    print(f"Eligible groups (n >= {min_n}): {len(eligible)}")
+    print(f"Significant groups (p_t < 0.05): {len(significant)}")
 
-        print(f"\n  Effect size:")
-        print(f"    Cohen's dz            : {format_effect(result.cohens_dz)}")
-        print(f"\n  Practical interpretation:")
-        print(f"    Direction             : Confidence {result.direction}")
-        if result.p_t < 0.05:
-            print(f"    Significance          : YES (p < 0.05)")
-        else:
-            print(f"    Significance          : NO (p >= 0.05)")
+    if not significant:
+        print("No statistically significant groups under the configured threshold.")
+        return
 
+    print("\nTop significant decreases (most negative mean delta):")
+    decreases = sorted([r for r in significant if r.mean_delta < 0], key=lambda r: r.mean_delta)
+    if decreases:
+        for r in decreases[:10]:
+            print(
+                f"  - {r.group_name}: n={r.n}, qids={r.n_questions}, Δ={r.mean_delta:+.3f}, p={r.p_t:.4g}, dz={r.cohens_dz:.3f}"
+            )
+    else:
+        print("  - none")
 
-def display_model_name(model: str) -> str:
-    return model.split("/", 1)[1] if "/" in model else model
+    print("\nTop significant increases (most positive mean delta):")
+    increases = sorted([r for r in significant if r.mean_delta > 0], key=lambda r: r.mean_delta, reverse=True)
+    if increases:
+        for r in increases[:10]:
+            print(
+                f"  - {r.group_name}: n={r.n}, qids={r.n_questions}, Δ={r.mean_delta:+.3f}, p={r.p_t:.4g}, dz={r.cohens_dz:.3f}"
+            )
+    else:
+        print("  - none")
 
 
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Analyze HLE statistical significance.")
-    parser.add_argument("--input", type=Path, default=INPUT_FILE, help="Path to HLE JSONL file")
-    parser.add_argument("--output", type=Path, default=OUTPUT_FILE, help="Path to write report")
+    parser = argparse.ArgumentParser(description="Analyze HLE statistical significance from worker files.")
+    parser.add_argument(
+        "--inputs",
+        type=Path,
+        nargs="*",
+        default=None,
+        help="Explicit JSONL file(s) and/or directories. If omitted, uses --input-dir + --pattern.",
+    )
+    parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR, help="Directory containing worker JSONL files")
+    parser.add_argument("--pattern", type=str, default=DEFAULT_PATTERN, help="Glob pattern used under --input-dir")
+    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT, help="Path to write report")
+    parser.add_argument(
+        "--min-group-n",
+        type=int,
+        default=20,
+        help="Minimum n required for a group to be included in highlighted findings",
+    )
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    rows = load_rows(args.input)
+    input_files = discover_input_files(args.inputs, args.input_dir, args.pattern)
+    if not input_files:
+        raise SystemExit("No input files found. Check --inputs or --input-dir/--pattern.")
 
+    rows, diagnostics = load_rows(input_files)
     if not rows:
-        raise SystemExit(f"No usable rows found in {args.input}")
+        raise SystemExit("No usable scored rows found in selected inputs.")
 
     buffer = io.StringIO()
     with redirect_stdout(buffer):
-        print_header()
+        print_header(input_files, diagnostics)
 
-        # Overall significance
         overall_result = test_significance(rows, "Overall")
 
-        # By model
         by_model = group_rows(rows, lambda row: row.model)
         model_results = [
-            test_significance(by_model[model], display_model_name(model))
+            test_significance(by_model[model], f"Model: {display_model_name(model)}")
             for model in sorted(by_model)
         ]
 
-        # By category
         by_category = group_rows(rows, lambda row: row.category)
         category_results = [
-            test_significance(by_category[cat], cat) for cat in sorted(by_category)
+            test_significance(by_category[cat], f"Category: {cat}")
+            for cat in sorted(by_category)
         ]
 
-        # Combine all results
-        all_results = [overall_result] + model_results + category_results
+        by_model_category = group_rows(rows, lambda row: f"{display_model_name(row.model)} || {row.category}")
+        model_category_results = [
+            test_significance(by_model_category[key], f"Model×Category: {key}")
+            for key in sorted(by_model_category)
+        ]
+
+        all_results = [overall_result] + model_results + category_results + model_category_results
 
         print_significance_summary(all_results)
-        print_detailed_results(all_results)
-
-        # Additional insights
-        print("\n" + "=" * 130)
-        print("KEY FINDINGS")
-        print("=" * 130)
-
-        significant_results = [r for r in all_results if r.p_t < 0.05 and r.n > 0]
-        if significant_results:
-            print(f"\nSignificant effects (p < 0.05): {len(significant_results)}")
-            for result in sorted(significant_results, key=lambda r: abs(r.mean_delta), reverse=True):
-                print(
-                    f"  • {result.group_name}: Δ = {result.mean_delta:+.3f} "
-                    f"(p = {result.p_t:.4f}, dz = {result.cohens_dz:.3f})"
-                )
-        else:
-            print("\nNo significant effects found at α=0.05")
-
-        largest_increases = sorted(model_results + category_results, key=lambda r: r.mean_delta, reverse=True)[:5]
-        print(f"\nTop 5 largest confidence increases:")
-        for i, result in enumerate(largest_increases, 1):
-            sig = "***" if result.p_t < 0.001 else "**" if result.p_t < 0.01 else "*" if result.p_t < 0.05 else ""
-            print(f"  {i}. {result.group_name}: Δ = {result.mean_delta:+.3f} {sig}")
-
-        largest_decreases = sorted(model_results + category_results, key=lambda r: r.mean_delta)[:5]
-        print(f"\nTop 5 largest confidence decreases:")
-        for i, result in enumerate(largest_decreases, 1):
-            sig = "***" if result.p_t < 0.001 else "**" if result.p_t < 0.01 else "*" if result.p_t < 0.05 else ""
-            print(f"  {i}. {result.group_name}: Δ = {result.mean_delta:+.3f} {sig}")
+        print_significant_findings(all_results, min_n=args.min_group_n)
 
     report = buffer.getvalue()
     print(report, end="")

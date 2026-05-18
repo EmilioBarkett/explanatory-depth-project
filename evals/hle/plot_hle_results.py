@@ -1,11 +1,10 @@
-"""Generate publication-style plots for HLE confidence-shift analysis.
+"""Generate plots for HLE confidence-shift analysis from worker outputs.
 
-This script reads HLE JSONL rows with first_rating and second_rating,
-computes delta = second_rating - first_rating, and writes figures to disk.
-
-Usage:
-  python evals/core/plot_hle_results.py
-  python evals/core/plot_hle_results.py --input results/HLE_results.jsonl --output-dir analysis/hle_figures
+This script aggregates JSONL rows with first/second ratings and writes:
+- basic distribution and summary plots
+- model/category comparisons
+- explicit sample-size imbalance figures
+- notable extreme-case figures
 """
 
 from __future__ import annotations
@@ -27,12 +26,14 @@ except ImportError:
     scipy_stats = None
 
 
-INPUT_FILE = Path(__file__).resolve().parents[2] / "results" / "new_sample_HLE.jsonl"
-OUTPUT_DIR = Path(__file__).resolve().parents[2] / "analysis" / "hle_figures_new_sample"
+DEFAULT_INPUT_DIR = Path(__file__).resolve().parents[2] / "results" / "HLE"
+DEFAULT_PATTERN = "hle_worker_*.jsonl"
+DEFAULT_OUTPUT_DIR = Path(__file__).resolve().parents[2] / "analysis" / "hle_figures_new_sample"
 
 
 @dataclass(frozen=True)
 class Row:
+    source_file: str
     question_id: str
     model: str
     category: str
@@ -44,42 +45,73 @@ class Row:
         return self.second_rating - self.first_rating
 
 
-def load_rows(path: Path) -> list[Row]:
-    rows: list[Row] = []
-    with path.open(encoding="utf-8") as handle:
-        for line_no, line in enumerate(handle, start=1):
-            line = line.strip()
-            if not line:
-                continue
-
-            try:
-                record = json.loads(line)
-            except json.JSONDecodeError as exc:
-                raise ValueError(f"Invalid JSON on line {line_no} of {path}: {exc}") from exc
-
-            first_rating = record.get("first_rating") or record.get("first_confidence")
-            second_rating = record.get("second_rating") or record.get("second_confidence")
-            question_id = record.get("question_id") or record.get("id") or "unknown"
-            model = record.get("model") or "unknown"
-            category = record.get("category") or "unknown"
-
-            if first_rating is None or second_rating is None:
-                continue
-
-            rows.append(
-                Row(
-                    question_id=str(question_id),
-                    model=str(model),
-                    category=str(category),
-                    first_rating=int(first_rating),
-                    second_rating=int(second_rating),
-                )
-            )
-    return rows
-
-
 def display_model_name(model: str) -> str:
     return model.split("/", 1)[1] if "/" in model else model
+
+
+def _preferred_input_dir(input_dir: Path) -> Path:
+    nested = input_dir / "new_method"
+    return nested if nested.is_dir() else input_dir
+
+
+def discover_input_files(inputs: list[Path] | None, input_dir: Path, pattern: str) -> list[Path]:
+    files: list[Path] = []
+    if inputs:
+        for p in inputs:
+            if p.is_dir():
+                files.extend(sorted(_preferred_input_dir(p).glob(pattern)))
+            elif p.exists():
+                files.append(p)
+        seen: set[Path] = set()
+        out: list[Path] = []
+        for p in files:
+            rp = p.resolve()
+            if rp not in seen:
+                out.append(p)
+                seen.add(rp)
+        return out
+
+    if not input_dir.exists():
+        return []
+    return sorted(_preferred_input_dir(input_dir).glob(pattern))
+
+
+def load_rows(paths: list[Path]) -> list[Row]:
+    rows: list[Row] = []
+    for path in paths:
+        with path.open(encoding="utf-8") as handle:
+            for line in handle:
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    record = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+
+                first_rating = record.get("first_rating")
+                if first_rating is None:
+                    first_rating = record.get("first_confidence")
+                second_rating = record.get("second_rating")
+                if second_rating is None:
+                    second_rating = record.get("second_confidence")
+                if first_rating is None or second_rating is None:
+                    continue
+
+                try:
+                    row = Row(
+                        source_file=path.name,
+                        question_id=str(record.get("question_id") or record.get("id") or "unknown"),
+                        model=str(record.get("model") or "unknown"),
+                        category=str(record.get("category") or "unknown"),
+                        first_rating=int(first_rating),
+                        second_rating=int(second_rating),
+                    )
+                except (TypeError, ValueError):
+                    continue
+
+                rows.append(row)
+    return rows
 
 
 def mean_ci(values: list[float], confidence: float = 0.95) -> tuple[float, float, float]:
@@ -139,7 +171,6 @@ def plot_mean_delta_by_group(
             err_low.append(mean_val - ci_low)
             err_high.append(ci_high - mean_val)
 
-    # Order by mean shift for a cleaner forest-style view.
     order = sorted(range(len(labels)), key=lambda idx: means[idx])
     labels = [labels[idx] for idx in order]
     means = [means[idx] for idx in order]
@@ -181,8 +212,14 @@ def plot_rating_change(rows: list[Row], output_dir: Path, dpi: int) -> None:
     means = [mean_first, mean_second]
     labels = ["First rating (R1)", "Second rating (R2)"]
 
-    yerr_low = [0.0 if math.isnan(low_first) else mean_first - low_first, 0.0 if math.isnan(low_second) else mean_second - low_second]
-    yerr_high = [0.0 if math.isnan(high_first) else high_first - mean_first, 0.0 if math.isnan(high_second) else high_second - mean_second]
+    yerr_low = [
+        0.0 if math.isnan(low_first) else mean_first - low_first,
+        0.0 if math.isnan(low_second) else mean_second - low_second,
+    ]
+    yerr_high = [
+        0.0 if math.isnan(high_first) else high_first - mean_first,
+        0.0 if math.isnan(high_second) else high_second - mean_second,
+    ]
 
     ax.errorbar(x, means, yerr=[yerr_low, yerr_high], fmt="o-", capsize=5, color="#1d3557", linewidth=2)
     ax.set_xticks(x)
@@ -215,19 +252,17 @@ def plot_delta_box_by_category(rows: list[Row], output_dir: Path, dpi: int) -> N
 
 
 def plot_delta_box_by_model(rows: list[Row], output_dir: Path, dpi: int) -> None:
-    """Plot delta distribution for each model."""
     grouped: dict[str, list[float]] = defaultdict(list)
     for row in rows:
-        model_name = display_model_name(row.model)
-        grouped[model_name].append(float(row.delta))
+        grouped[display_model_name(row.model)].append(float(row.delta))
 
     models = sorted(grouped, key=lambda m: statistics.mean(grouped[m]), reverse=True)
     values = [grouped[model] for model in models]
 
     fig, ax = plt.subplots(figsize=(12, max(4.0, 0.5 * len(models) + 1)))
     bp = ax.boxplot(values, labels=models, vert=False, patch_artist=True)
-    for patch in bp['boxes']:
-        patch.set_facecolor('#457b9d')
+    for patch in bp["boxes"]:
+        patch.set_facecolor("#457b9d")
         patch.set_alpha(0.7)
     ax.axvline(0, color="#d62828", linestyle="--", linewidth=2, label="No change")
     ax.set_title("Confidence Shift Distribution by Model")
@@ -240,43 +275,38 @@ def plot_delta_box_by_model(rows: list[Row], output_dir: Path, dpi: int) -> None
 
 
 def plot_extreme_cases(rows: list[Row], output_dir: Path, dpi: int, n_show: int = 15) -> None:
-    """Plot the most extreme confidence changes (best and worst)."""
     sorted_rows = sorted(rows, key=lambda r: r.delta)
-    
-    # Largest decreases
+
     decreases = sorted_rows[:n_show]
-    increase_indices = [rows.index(r) for r in decreases if r in rows]
-    
-    if len(decreases) > 0:
+    if decreases:
         fig, ax = plt.subplots(figsize=(12, max(5, 0.4 * len(decreases))))
         y_pos = range(len(decreases))
         deltas = [r.delta for r in decreases]
-        colors = ['#d62828' if d < 0 else '#2a9d8f' for d in deltas]
-        
-        ax.barh(y_pos, deltas, color=colors, alpha=0.8, edgecolor='black')
-        labels = [f"{display_model_name(r.model)} - {r.category}" for r in decreases]
+        colors = ["#d62828" if d < 0 else "#2a9d8f" for d in deltas]
+
+        ax.barh(y_pos, deltas, color=colors, alpha=0.8, edgecolor="black")
+        labels = [f"{display_model_name(r.model)} | {r.category}" for r in decreases]
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels, fontsize=9)
-        ax.axvline(0, color='black', linestyle='-', linewidth=1)
+        ax.axvline(0, color="black", linestyle="-", linewidth=1)
         ax.set_xlabel("Delta (R2 - R1)")
         ax.set_title(f"Top {n_show} Largest Confidence Decreases")
         fig.tight_layout()
         fig.savefig(output_dir / "extreme_decreases.png", dpi=dpi)
         plt.close(fig)
-    
-    # Largest increases
+
     increases = sorted_rows[-n_show:][::-1]
-    if len(increases) > 0:
+    if increases:
         fig, ax = plt.subplots(figsize=(12, max(5, 0.4 * len(increases))))
         y_pos = range(len(increases))
         deltas = [r.delta for r in increases]
-        colors = ['#2a9d8f' if d > 0 else '#d62828' for d in deltas]
-        
-        ax.barh(y_pos, deltas, color=colors, alpha=0.8, edgecolor='black')
-        labels = [f"{display_model_name(r.model)} - {r.category}" for r in increases]
+        colors = ["#2a9d8f" if d > 0 else "#d62828" for d in deltas]
+
+        ax.barh(y_pos, deltas, color=colors, alpha=0.8, edgecolor="black")
+        labels = [f"{display_model_name(r.model)} | {r.category}" for r in increases]
         ax.set_yticks(y_pos)
         ax.set_yticklabels(labels, fontsize=9)
-        ax.axvline(0, color='black', linestyle='-', linewidth=1)
+        ax.axvline(0, color="black", linestyle="-", linewidth=1)
         ax.set_xlabel("Delta (R2 - R1)")
         ax.set_title(f"Top {n_show} Largest Confidence Increases")
         fig.tight_layout()
@@ -285,38 +315,27 @@ def plot_extreme_cases(rows: list[Row], output_dir: Path, dpi: int, n_show: int 
 
 
 def plot_model_comparison_scatter(rows: list[Row], output_dir: Path, dpi: int) -> None:
-    """Create scatter plot showing first vs second rating by model."""
     grouped: dict[str, tuple[list[float], list[float]]] = defaultdict(lambda: ([], []))
-    
+
     for row in rows:
         model_name = display_model_name(row.model)
         first, second = grouped[model_name]
         first.append(row.first_rating)
         second.append(row.second_rating)
-    
+
     fig, ax = plt.subplots(figsize=(10, 8))
-    colors_map = {
-        'deepseek-r1': '#e63946',
-        'o3-mini': '#457b9d',
-        'claude-opus-4': '#2a9d8f',
-        'command-a': '#f1faee',
-        'gpt-4o': '#a8dadc'
-    }
-    
     for model_name in sorted(grouped):
         first_vals, second_vals = grouped[model_name]
-        color = colors_map.get(model_name, '#cccccc')
-        ax.scatter(first_vals, second_vals, label=model_name, alpha=0.6, s=50, color=color)
-    
-    # Diagonal line (no change)
-    ax.plot([0, 10], [0, 10], 'k--', linewidth=1, alpha=0.5, label='No change')
+        ax.scatter(first_vals, second_vals, label=model_name, alpha=0.6, s=45)
+
+    ax.plot([0, 10], [0, 10], "k--", linewidth=1, alpha=0.5, label="No change")
     ax.set_xlabel("First Rating (R1)")
     ax.set_ylabel("Second Rating (R2)")
     ax.set_xlim(0, 10.5)
     ax.set_ylim(0, 10.5)
-    ax.set_aspect('equal')
+    ax.set_aspect("equal")
     ax.grid(True, alpha=0.3)
-    ax.legend(bbox_to_anchor=(1.05, 1), loc='upper left', fontsize=9)
+    ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left", fontsize=9)
     ax.set_title("Confidence Shift by Model: Before vs After Explanation")
     fig.tight_layout()
     fig.savefig(output_dir / "model_scatter_r1_vs_r2.png", dpi=dpi)
@@ -324,65 +343,160 @@ def plot_model_comparison_scatter(rows: list[Row], output_dir: Path, dpi: int) -
 
 
 def plot_category_delta_comparison(rows: list[Row], output_dir: Path, dpi: int) -> None:
-    """Create comparison of mean delta across categories and models."""
     model_category_deltas: dict[tuple[str, str], list[float]] = defaultdict(list)
-    
     for row in rows:
         model_name = display_model_name(row.model)
-        key = (model_name, row.category)
-        model_category_deltas[key].append(float(row.delta))
-    
-    # Get top models by absolute mean delta
-    top_models = sorted(
-        set(m for m, _ in model_category_deltas.keys()),
-        key=lambda m: statistics.mean(
-            statistics.mean(model_category_deltas[(m, c)])
-            for c in set(cat for mod, cat in model_category_deltas.keys() if mod == m)
-        ),
-        reverse=True
-    )[:6]
-    
-    categories = sorted(set(c for _, c in model_category_deltas.keys()))
-    
+        model_category_deltas[(model_name, row.category)].append(float(row.delta))
+
+    model_scores: dict[str, float] = {}
+    for model in {m for m, _ in model_category_deltas}:
+        cat_means = [
+            statistics.mean(model_category_deltas[(model, cat)])
+            for _, cat in model_category_deltas
+            if model == _
+        ]
+        model_scores[model] = statistics.mean(cat_means) if cat_means else 0.0
+
+    top_models = sorted(model_scores, key=model_scores.get, reverse=True)[:6]
+    categories = sorted({c for _, c in model_category_deltas})
+
     fig, ax = plt.subplots(figsize=(14, 6))
-    
     x = range(len(categories))
-    width = 0.15
-    
+    width = 0.14
+
     for i, model in enumerate(top_models):
         means = [
             statistics.mean(model_category_deltas[(model, cat)])
-            if (model, cat) in model_category_deltas else 0
+            if (model, cat) in model_category_deltas
+            else 0.0
             for cat in categories
         ]
         ax.bar([xi + i * width for xi in x], means, width, label=model, alpha=0.8)
-    
-    ax.axhline(0, color='black', linestyle='-', linewidth=0.8)
+
+    ax.axhline(0, color="black", linestyle="-", linewidth=0.8)
     ax.set_xlabel("Question Category")
     ax.set_ylabel("Mean Delta (R2 - R1)")
     ax.set_title("Average Confidence Shift by Model and Category")
     ax.set_xticks([xi + width * 2.5 for xi in x])
-    ax.set_xticklabels(categories, rotation=45, ha='right')
+    ax.set_xticklabels(categories, rotation=45, ha="right")
     ax.legend(fontsize=9)
-    ax.grid(True, alpha=0.3, axis='y')
+    ax.grid(True, alpha=0.3, axis="y")
     fig.tight_layout()
     fig.savefig(output_dir / "category_model_delta_comparison.png", dpi=dpi)
     plt.close(fig)
 
 
+def plot_sample_size_by_model(rows: list[Row], output_dir: Path, dpi: int) -> None:
+    counts: dict[str, int] = defaultdict(int)
+    for row in rows:
+        counts[display_model_name(row.model)] += 1
+
+    labels = sorted(counts, key=counts.get, reverse=True)
+    values = [counts[label] for label in labels]
+
+    fig, ax = plt.subplots(figsize=(10, max(4.0, 0.45 * len(labels) + 1.0)))
+    y = range(len(labels))
+    ax.barh(y, values, color="#4c956c", edgecolor="black", alpha=0.85)
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels)
+    ax.invert_yaxis()
+    ax.set_xlabel("Row count")
+    ax.set_ylabel("Model")
+    ax.set_title("Sample Size by Model")
+    for yi, val in zip(y, values):
+        ax.text(val + 0.5, yi, str(val), va="center", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(output_dir / "sample_size_by_model.png", dpi=dpi)
+    plt.close(fig)
+
+
+def plot_sample_size_by_category(rows: list[Row], output_dir: Path, dpi: int) -> None:
+    counts: dict[str, int] = defaultdict(int)
+    for row in rows:
+        counts[row.category] += 1
+
+    labels = sorted(counts, key=counts.get, reverse=True)
+    values = [counts[label] for label in labels]
+
+    fig, ax = plt.subplots(figsize=(10, max(4.0, 0.45 * len(labels) + 1.0)))
+    y = range(len(labels))
+    ax.barh(y, values, color="#2f6690", edgecolor="black", alpha=0.85)
+    ax.set_yticks(y)
+    ax.set_yticklabels(labels)
+    ax.invert_yaxis()
+    ax.set_xlabel("Row count")
+    ax.set_ylabel("Category")
+    ax.set_title("Sample Size by Question Category")
+    for yi, val in zip(y, values):
+        ax.text(val + 0.5, yi, str(val), va="center", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(output_dir / "sample_size_by_category.png", dpi=dpi)
+    plt.close(fig)
+
+
+def plot_count_heatmap_model_category(rows: list[Row], output_dir: Path, dpi: int) -> None:
+    models = sorted({display_model_name(r.model) for r in rows})
+    categories = sorted({r.category for r in rows})
+
+    m_index = {name: i for i, name in enumerate(models)}
+    c_index = {name: i for i, name in enumerate(categories)}
+
+    matrix = [[0 for _ in models] for _ in categories]
+    for row in rows:
+        i = c_index[row.category]
+        j = m_index[display_model_name(row.model)]
+        matrix[i][j] += 1
+
+    fig_width = max(8.0, 0.8 * len(models) + 3.0)
+    fig_height = max(5.0, 0.6 * len(categories) + 2.0)
+    fig, ax = plt.subplots(figsize=(fig_width, fig_height))
+
+    im = ax.imshow(matrix, cmap="YlGnBu", aspect="auto")
+    ax.set_xticks(range(len(models)))
+    ax.set_yticks(range(len(categories)))
+    ax.set_xticklabels(models, rotation=45, ha="right")
+    ax.set_yticklabels(categories)
+    ax.set_xlabel("Model")
+    ax.set_ylabel("Category")
+    ax.set_title("Sample Size Heatmap: Model x Category")
+
+    for i in range(len(categories)):
+        for j in range(len(models)):
+            val = matrix[i][j]
+            ax.text(j, i, str(val), ha="center", va="center", fontsize=8)
+
+    fig.colorbar(im, ax=ax, fraction=0.03, pad=0.02)
+    fig.tight_layout()
+    fig.savefig(output_dir / "sample_size_heatmap_model_category.png", dpi=dpi)
+    plt.close(fig)
+
+
 def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Generate HLE confidence-shift plots.")
-    parser.add_argument("--input", type=Path, default=INPUT_FILE, help="Path to HLE_results.jsonl")
-    parser.add_argument("--output-dir", type=Path, default=OUTPUT_DIR, help="Directory to save plots")
+    parser = argparse.ArgumentParser(description="Generate HLE confidence-shift plots from worker files.")
+    parser.add_argument(
+        "--inputs",
+        type=Path,
+        nargs="*",
+        default=None,
+        help="Explicit JSONL file(s) and/or directories. If omitted, uses --input-dir + --pattern.",
+    )
+    parser.add_argument("--input-dir", type=Path, default=DEFAULT_INPUT_DIR, help="Directory containing worker JSONL files")
+    parser.add_argument("--pattern", type=str, default=DEFAULT_PATTERN, help="Glob pattern used under --input-dir")
+    parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR, help="Directory to save plots")
     parser.add_argument("--dpi", type=int, default=180, help="Figure DPI")
+    parser.add_argument("--extreme-n", type=int, default=15, help="How many extreme rows to show in extreme plots")
     return parser.parse_args()
 
 
 def main() -> None:
     args = parse_args()
-    rows = load_rows(args.input)
+    input_files = discover_input_files(args.inputs, args.input_dir, args.pattern)
+    if not input_files:
+        raise SystemExit("No input files found. Check --inputs or --input-dir/--pattern.")
+
+    rows = load_rows(input_files)
     if not rows:
-        raise SystemExit(f"No usable rows found in {args.input}")
+        raise SystemExit("No usable scored rows found in selected inputs.")
 
     args.output_dir.mkdir(parents=True, exist_ok=True)
 
@@ -392,10 +506,12 @@ def main() -> None:
         model_grouped[display_model_name(row.model)].append(float(row.delta))
         category_grouped[row.category].append(float(row.delta))
 
+    print(f"Loaded {len(rows)} rows from {len(input_files)} file(s)")
     print("Generating plots...")
+
     plot_delta_hist(rows, args.output_dir, args.dpi)
     print("  ✓ delta_histogram.png")
-    
+
     plot_mean_delta_by_group(
         model_grouped,
         title="Mean Delta by Model (95% CI)",
@@ -404,7 +520,7 @@ def main() -> None:
         dpi=args.dpi,
     )
     print("  ✓ mean_delta_by_model.png")
-    
+
     plot_mean_delta_by_group(
         category_grouped,
         title="Mean Delta by Question Category (95% CI)",
@@ -413,25 +529,34 @@ def main() -> None:
         dpi=args.dpi,
     )
     print("  ✓ mean_delta_by_category.png")
-    
+
     plot_rating_change(rows, args.output_dir, args.dpi)
     print("  ✓ rating_change_overall.png")
-    
+
     plot_delta_box_by_category(rows, args.output_dir, args.dpi)
     print("  ✓ delta_boxplot_by_category.png")
-    
+
     plot_delta_box_by_model(rows, args.output_dir, args.dpi)
     print("  ✓ delta_boxplot_by_model.png")
-    
-    plot_extreme_cases(rows, args.output_dir, args.dpi)
+
+    plot_extreme_cases(rows, args.output_dir, args.dpi, n_show=args.extreme_n)
     print("  ✓ extreme_increases.png")
     print("  ✓ extreme_decreases.png")
-    
+
     plot_model_comparison_scatter(rows, args.output_dir, args.dpi)
     print("  ✓ model_scatter_r1_vs_r2.png")
-    
+
     plot_category_delta_comparison(rows, args.output_dir, args.dpi)
     print("  ✓ category_model_delta_comparison.png")
+
+    plot_sample_size_by_model(rows, args.output_dir, args.dpi)
+    print("  ✓ sample_size_by_model.png")
+
+    plot_sample_size_by_category(rows, args.output_dir, args.dpi)
+    print("  ✓ sample_size_by_category.png")
+
+    plot_count_heatmap_model_category(rows, args.output_dir, args.dpi)
+    print("  ✓ sample_size_heatmap_model_category.png")
 
     print(f"\nAll figures saved to {args.output_dir}")
     if scipy_stats is None:

@@ -20,8 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 from evals.core.pipeline import MODELS, build_turn1_prompt, run_three_turns, RATE_LIMIT_DELAY, format_eta
 
 DATA_FILE   = Path(__file__).resolve().parents[2] / "data" / "hle_test.jsonl"
-OUTPUT_DIR  = Path(__file__).resolve().parents[2] / "results" 
-OUTPUT_FILE = OUTPUT_DIR / "HLE_results.jsonl"
+OUTPUT_DIR  = Path(__file__).resolve().parents[2] / "results" / "HLE" / "new_method"
+OUTPUT_FILE = OUTPUT_DIR / "hle_worker_eval_hle.jsonl"
 
 # HLE has 2500 questions — cap for tractable runs. Adjust as needed.
 # BEGIN_IDX is 1-based and inclusive: BEGIN_IDX=51, MAX_QUESTIONS=50 loads questions 51-100.
