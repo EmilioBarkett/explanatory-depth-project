@@ -35,19 +35,19 @@ RATE_LIMIT_DELAY = 1
 MODELS = [
     ## Reasoning
     "deepseek/deepseek-r1", 
-    "openai/o3-mini", 
-    "qwen/qwq-32b",
-    "anthropic/claude-opus-4",
-    "google/gemini-2.5-pro",
-    "x-ai/grok-3",
+    # "openai/o3-mini", 
+    # # "qwen/qwq-32b",
+    # "anthropic/claude-opus-4",
+    # "google/gemini-2.5-pro",
+    # "x-ai/grok-3",
 
-    ## Non-reasoning:
-    "openai/gpt-4o", 
-    "anthropic/claude-3.5-haiku",
-    "google/gemini-2.0-flash-001", 
-    "meta-llama/llama-3.3-70b-instruct",
-    "mistralai/mixtral-8x22b-instruct",
-    "cohere/command-a"
+    # ## Non-reasoning:
+    # "openai/gpt-4o", 
+    # "anthropic/claude-3.5-haiku",
+    # "google/gemini-2.0-flash-001", 
+    # "meta-llama/llama-3.3-70b-instruct",
+    # "mistralai/mixtral-8x22b-instruct",
+    # "cohere/command-a"
 ]
 
 # ── Prompt templates ───────────────────────────────────────────────────────────
