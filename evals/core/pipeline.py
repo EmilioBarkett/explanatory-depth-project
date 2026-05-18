@@ -16,13 +16,17 @@ import time
 import requests
 from dotenv import load_dotenv
 from evals.core.text_analysis import score_explanation
+from evals.core.structured import openrouter_requests_kwargs
 
 load_dotenv()
 
 # ── API config ─────────────────────────────────────────────────────────────────
 
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_URL     = "https://openrouter.ai/api/v1/chat/completions"
+OPENROUTER_URL     = os.getenv(
+    "OPENROUTER_API_URL",
+    "https://openrouter.ai/api/v1/chat/completions",
+)
 
 REQUEST_TIMEOUT  = 60
 RETRY_ATTEMPTS   = 3
@@ -109,6 +113,7 @@ def call_openrouter(messages: list[dict], model: str) -> str:
                 headers=headers,
                 json=payload,
                 timeout=REQUEST_TIMEOUT,
+                **openrouter_requests_kwargs(),
             )
             resp.raise_for_status()
 
